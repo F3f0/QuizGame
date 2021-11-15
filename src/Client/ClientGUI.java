@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 public class ClientGUI extends JFrame{
     JButton btn1;
     JButton btn2;
+    JButton btn3;
+    JButton btn4;
     JLabel question;
     Client client;
 
@@ -18,19 +20,33 @@ public class ClientGUI extends JFrame{
       JPanel panel = new JPanel();
       panel.setPreferredSize(new Dimension(500,300));
       panel.setLayout(new GridBagLayout());
-      btn1 = new JButton("Alt1");
+      btn1 = new JButton("1");
       btn1.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            client.sendAnswer("alt1");
+            client.sendAnswer("1");
           }
       });
       //btn1.setPreferredSize(new Dimension(200,100));
-      btn2 = new JButton("Alt2");
+      btn2 = new JButton("2");
       btn2.addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-              client.sendAnswer("alt2");
+              client.sendAnswer("2");
+          }
+      });
+      btn3 = new JButton("3");
+      btn3.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              client.sendAnswer("3");
+          }
+      });
+      btn4 = new JButton("4");
+      btn4.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              client.sendAnswer("4");
           }
       });
       //btn2.setPreferredSize(new Dimension(200,100));
@@ -57,6 +73,11 @@ public class ClientGUI extends JFrame{
       panel.add(btn1, gc);
       gc.gridx = 1;
       panel.add(btn2, gc);
+      gc.gridx = 0;
+      gc.gridy = 2;
+      panel.add(btn3, gc);
+      gc.gridx = 1;
+      panel.add(btn4, gc);
       add(panel);
       pack();
       setVisible(true);

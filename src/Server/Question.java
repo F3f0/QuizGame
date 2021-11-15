@@ -3,18 +3,14 @@ package Server;
 import java.io.Serializable;
 
 public class Question implements Serializable {
+    private String question;
+    private String case1;
+    private String case2;
+    private String case3;
+    private String case4;
+    private String answer;
 
-    String question;
-    String alt1;
-    String alt2;
-    public String correctAnswer;
-
-    public Question(String question, String alt1, String alt2, String correctAnswer) {
-        this.question = question;
-        this.alt1 = alt1;
-        this.alt2 = alt2;
-        this.correctAnswer = correctAnswer;
-    }
+    Question(){};
 
     public String getQuestion() {
         return question;
@@ -24,27 +20,45 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public String getAlt1() {
-        return alt1;
+    public String getCase1() {
+        return case1;
     }
 
-    public void setAlt1(String alt1) {
-        this.alt1 = alt1;
+    public void setCase1(String case1) {
+        this.case1 = case1;
     }
 
-    public String getAlt2() {
-        return alt2;
+    public String getCase2() {
+        return case2;
     }
 
-    public void setAlt2(String alt2) {
-        this.alt2 = alt2;
+    public void setCase2(String case2) {
+        this.case2 = case2;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getCase3() {
+        return case3;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCase3(String case3) {
+        this.case3 = case3;
     }
+
+    public String getCase4() {
+        return case4;
+    }
+
+    public void setCase4(String case4) {
+        this.case4 = case4;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+
 }

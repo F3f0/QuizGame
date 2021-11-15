@@ -34,8 +34,10 @@ public class Client extends Thread {
     public void setCurrentQuestion(Question q){
         currentQuestion = q;
         gui.question.setText(currentQuestion.getQuestion());
-        gui.btn1.setText(currentQuestion.getAlt1());
-        gui.btn2.setText(currentQuestion.getAlt2());
+        gui.btn1.setText(currentQuestion.getCase1());
+        gui.btn2.setText(currentQuestion.getCase2());
+        gui.btn3.setText(currentQuestion.getCase3());
+        gui.btn4.setText(currentQuestion.getCase4());
 
 
         //Behövs dessa?

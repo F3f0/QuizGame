@@ -1,7 +1,8 @@
 package Server;
 
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.List;
 
 public class Game extends Thread {
     public int questionNr = 0;
@@ -10,15 +11,14 @@ public class Game extends Thread {
     Player playerTwo;
     Question q1;
     Question q2;
-    ArrayList<Question> questions;
+    DAO database;
+    List<Question> questions;
 
     Thread thread = new Thread(this);
-    public Game(){
-        q1 = new Question("När fick vi allmän rösträtt i Sverige", "1875","1921","alt2");
-        q2 = new Question("När introducerades Java?", "1993", "1995", "alt2");
-        questions = new ArrayList<>();
-        questions.add(q1);
-        questions.add(q2);
+    public Game() throws IOException {
+        database= new DAO();
+        questions = database.getQuestionForGame();
+
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -34,10 +34,10 @@ public class Game extends Thread {
         currentPlayer = playerOne;
         while(true) {
 
-            currentPlayer.sendMessageToPlayer(questions.get(questionNr));
+            currentPlayer.sendMessageToPlayer(questions.get(0));
             String temp;
             temp = currentPlayer.reciever.getAnswer();
-            if (temp.equalsIgnoreCase(questions.get(questionNr).correctAnswer)) {
+            if (temp.equalsIgnoreCase(questions.get(questionNr).getAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
             } else {
                 currentPlayer.sendMessageToPlayer("Fel svar!");
