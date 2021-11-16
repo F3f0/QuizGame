@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ClientGUI extends JFrame{
+public class ClientGUI extends JFrame implements ActionListener{
     JButton btn1;
     JButton btn2;
     JButton btn3;
@@ -17,71 +17,75 @@ public class ClientGUI extends JFrame{
 
   public ClientGUI(Client client){
       this.client = client;
-      JPanel panel = new JPanel();
-      panel.setPreferredSize(new Dimension(500,300));
-      panel.setLayout(new GridBagLayout());
-      btn1 = new JButton("1");
-      btn1.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-            client.sendAnswer("1");
-          }
-      });
-      //btn1.setPreferredSize(new Dimension(200,100));
-      btn2 = new JButton("2");
-      btn2.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-              client.sendAnswer("2");
-          }
-      });
-      btn3 = new JButton("3");
-      btn3.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-              client.sendAnswer("3");
-          }
-      });
-      btn4 = new JButton("4");
-      btn4.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-              client.sendAnswer("4");
-          }
-      });
-      //btn2.setPreferredSize(new Dimension(200,100));
+      setLayout(new BorderLayout());
+      JPanel bottomPanel = new JPanel();
+      JPanel middlePanel = new JPanel();
+      middlePanel.setPreferredSize(new Dimension(500,100));
+      middlePanel.setBackground(new Color(39, 117, 144 ));
+      bottomPanel.setPreferredSize(new Dimension(250,250));
+      bottomPanel.setBackground(new Color(39, 117, 144 ));
+      bottomPanel.setLayout(new GridLayout(2,2,4,4));
+
+        btn1 = new JButton("1");
+            btn1.addActionListener(this);
+            btn1.setBackground(new Color(59, 89, 182));
+            btn1.setForeground(Color.WHITE);
+            btn1.setFocusPainted(false);
+            btn1.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+        btn2 = new JButton("2");
+            btn2.addActionListener(this);
+            btn2.setBackground(new Color(59, 89, 182));
+            btn2.setForeground(Color.WHITE);
+            btn2.setFocusPainted(false);
+            btn2.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+        btn3 = new JButton("3");
+            btn3.addActionListener(this);
+            btn3.setBackground(new Color(59, 89, 182));
+            btn3.setForeground(Color.WHITE);
+            btn3.setFocusPainted(false);
+            btn3.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+        btn4 = new JButton("4");
+            btn4.addActionListener(this);
+            btn4.setBackground(new Color(59, 89, 182));
+            btn4.setForeground(Color.WHITE);
+            btn4.setFocusPainted(false);
+            btn4.setFont(new Font("Tahoma", Font.BOLD, 12));
+
+
       question = new JLabel("Fråga");
-      //question.setPreferredSize(new Dimension(500,100));
-      question.setBackground(Color.GRAY);
+      question.setBackground(Color.BLACK);
+      question.setForeground(Color.WHITE);
       question.setOpaque(true);
       question.setHorizontalAlignment(SwingConstants.CENTER);
 
-      GridBagConstraints gc = new GridBagConstraints();
-      gc.fill = GridBagConstraints.BOTH;
-      gc.gridy = 0;
-      gc.gridx = 0;
-      gc.gridwidth = 2;
-      gc.weightx = 0;
-      gc.weighty = 0.3;
-      panel.add(question, gc);
-
-      gc.fill = GridBagConstraints.BOTH;
-      gc.weightx = 0.5;
-      gc.weighty = 0.5;
-      gc.gridwidth = 1;
-      gc.gridy = 1;
-      panel.add(btn1, gc);
-      gc.gridx = 1;
-      panel.add(btn2, gc);
-      gc.gridx = 0;
-      gc.gridy = 2;
-      panel.add(btn3, gc);
-      gc.gridx = 1;
-      panel.add(btn4, gc);
-      add(panel);
+      middlePanel.add(question);
+      bottomPanel.add(btn1);    bottomPanel.add(btn2);      bottomPanel.add(btn3);      bottomPanel.add(btn4);
+      add(bottomPanel,BorderLayout.SOUTH);
+      add(middlePanel,BorderLayout.CENTER);
       pack();
+
       setVisible(true);
+      setLocationRelativeTo(null);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+      if(e.getSource().equals(btn1)){
+          client.sendAnswer("1");
+      }
+      if(e.getSource().equals(btn2)){
+          client.sendAnswer("2");
+      }
+        if(e.getSource().equals(btn3)){
+            client.sendAnswer("3");
+        }
+        if(e.getSource().equals(btn4)){
+            client.sendAnswer("4");
+        }
+    }
 }

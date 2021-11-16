@@ -38,10 +38,9 @@ public class Reciever extends Thread {
                         String s = (String) obj;
 
                         client.gui.question.setText(s);
-                        Thread.sleep(2500);
                     }
                 }
-            } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
