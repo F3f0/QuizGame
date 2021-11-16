@@ -34,13 +34,15 @@ public class Reciever extends Thread {
                 while (((obj = in.readObject())!=null)) {
                     if(obj instanceof Question) {
                         client.setCurrentQuestion((Question)obj);
+                        client.gui.setContentPane(client.gui.gamePanel);
                     } else if (obj instanceof String){
                         String s = (String) obj;
-
-                        client.gui.question.setText(s);
+                        client.gui.gamePanel.question.setText(s);
+                        Thread.sleep(1500);
+                        client.gui.setContentPane(client.gui.scorePanel);
                     }
                 }
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
