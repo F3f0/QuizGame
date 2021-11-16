@@ -37,6 +37,7 @@ public class Game extends Thread {
             currentPlayer.sendMessageToPlayer(questions.get(0));
             String temp;
             temp = currentPlayer.reciever.getAnswer();
+            System.out.println("Svar mottaget " + temp);
             if (temp.equalsIgnoreCase(questions.get(questionNr).getAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
             } else {
@@ -52,7 +53,6 @@ public class Game extends Thread {
             } else {
                 currentPlayer = playerOne;
             }
-
         }
     }
 }
