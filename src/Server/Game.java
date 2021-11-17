@@ -13,12 +13,12 @@ public class Game extends Thread {
     Player playerTwo;
     Question q1;
     Question q2;
-    DAO database;
+    Database database;
     List<Question> questions;
 
     Thread thread = new Thread(this);
     public Game() throws IOException {
-        database= new DAO();
+        database= new Database();
         questions = database.getQuestionForGame();
 
     }
@@ -40,7 +40,7 @@ public class Game extends Thread {
             String temp;
             temp = currentPlayer.reciever.getAnswer();
             System.out.println("Svar mottaget " + temp);
-            if (temp.equalsIgnoreCase(questions.get(questionNr).getAnswer())) {
+            if (temp.equalsIgnoreCase(questions.get(questionNr).getCase1())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
             } else {
                 currentPlayer.sendMessageToPlayer("Fel svar!");

@@ -3,14 +3,23 @@ package Questions;
 import java.io.Serializable;
 
 public class Question implements Serializable {
+    private String category;
     private String question;
     private String case1;
     private String case2;
     private String case3;
     private String case4;
-    private String answer;
+
 
     public Question(){};
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getQuestion() {
         return question;
@@ -52,13 +61,6 @@ public class Question implements Serializable {
         this.case4 = case4;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 
 
 }
