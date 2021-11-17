@@ -21,6 +21,7 @@ public class Server {
                 e.printStackTrace();
             }
             // lägga till finally?
+
         }
     }
 
