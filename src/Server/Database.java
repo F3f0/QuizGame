@@ -17,18 +17,23 @@ public class Database {
     Database() throws IOException {
         BufferedReader getQuestionsFromFile = new BufferedReader(new FileReader("src/questions.txt"));
         String line;
-        while (getQuestionsFromFile.readLine() != null) {
+        while ((line = getQuestionsFromFile.readLine()) != null) {
             Question qst = new Question();                              //Objekt question skapas
-            line = getQuestionsFromFile.readLine();                     //Läser första rad > första fråga
+                                 //Läser första rad > första fråga
             qst.setCategory(line.substring(0, line.indexOf(':')+1));
             qst.setQuestion(line.substring(line.indexOf(':')+2, line.indexOf('?')+1));
             String temp = line.substring(line.indexOf('*')+1);          //String med bara svår
-            String [] cases = temp.split("\\*");                   //Splittrar alla svår
+            String [] cases = temp.split("\\*");
+            System.out.println(cases[0]);//Splittrar alla svår
+            System.out.println(cases[1]);
+            System.out.println(cases[2]);
+            System.out.println(cases[3]);
             qst.setCase1(cases[0]);                         //alltid rätt svar
             qst.setCase2(cases[1]);
             qst.setCase3(cases[2]);
             qst.setCase4(cases[3]);
-            questions.add(qst);                                     //Adderar vi frågan i listan
+            questions.add(qst);
+            //Adderar vi frågan i listan
         }
         getQuestionsFromFile.close();
     }

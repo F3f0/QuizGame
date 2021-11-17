@@ -1,5 +1,5 @@
 History: What future Soviet dictator was training to be a priest when he got turned on to Marxism?*Joseph Stalin*Leonid Breznev*Michail Gorbachev*Nikita Khrushchev
-History: Who was the 16th president of the United States?*Abraham Lincoln*Teddy Roosevelt*George Washington*
+History: Who was the 16th president of the United States?*Abraham Lincoln*Teddy Roosevelt*George Washington*Panos
 History: What current branch of the U.S. military was a corps of only 50 soldiers when World War I broke out?*The U.S. Air Force*United States Army Special Forces*Nurse Corps*Navy seals
 History: What game was created by French mathematician Blaise Pascal, which he discovered when doing experiments into perpetual motion?*The Game of Roulette*Russian roulette*TicTacToe*Bingo
 History: Who said: "I'm the president of the United States and I'm not going to eat any more broccoli"?*George Bush*Donald Trump*Bill Clinton*Ronald Reagan
@@ -18,11 +18,11 @@ Geography: 300,000 Chinese troops invaded a country in February of 1979, what wa
 Geography: Worlds most remote weather station is located in what country?*Canada*Denmark*Russia*Argentina
 Geography: Which country lost over seventeen percent of its entire population in World War II?*Poland*USSR*Germany*Belgium
 Geography: Adolf Hitler was born in what country?*Austria*Germany*Hungary*Denmark
-Geography: In 1989, what country did the United States invade in what George Will dubbed "an act of hemispheric hygiene"?*Panama
+Geography: In 1989, what country did the United States invade in what George Will dubbed "an act of hemispheric hygiene"?*Panama*Brazil*Cuba*Ecuador
 Geography: What country did Ion Iliescu take over after its previous president was arrested, tried and shot?*Romania*Bulgaria*Slovakia*Moldavia
 Geography: Aruba maintains the strongest ties to what European country?*Netherlands*France*UK*Portugal
 Music: General music: Live and let die is a song by which artist?*Paul McCartney*Guns'n'roses*Phil Collins*Phil Anselmo
-Music: Who has accumulated the most UK and US top ten albums and grossed most income from foreign touring?*Rolling Stones
+Music: Who has accumulated the most UK and US top ten albums and grossed most income from foreign touring?*Rolling Stones*The Beatles*The Who*Pink Floyd*
 Music: Who was the first female with two UK million-selling singles?*Celine Dion*Madonna*Britney Spears*Cher
 Music: Which Canadian-born artist was the biggest-selling singles artist tin the UK in 1991?*Bryan Adams*Michael Buble'*Leonard Cohen*Drake
 Music: Felix Cavaliere and Dino Danelli were in which group?*Rascals*Misfits*Mamas and Papas*The racounters
