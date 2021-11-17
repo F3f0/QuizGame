@@ -37,14 +37,13 @@ public class ClientGUI extends JFrame implements ActionListener{
           client.sendAnswer(gamePanel.btn2.getText());
       }
       if(e.getSource().equals(gamePanel.btn3)){
-            client.sendAnswer(gamePanel.btn3.getText());
+          client.sendAnswer(gamePanel.btn3.getText());
       }
       if(e.getSource().equals(gamePanel.btn4)){
-            client.sendAnswer(gamePanel.btn4.getText());
-        }
-        if(e.getSource().equals(introPanel.button)){
-            client.thread.start();
-
+          client.sendAnswer(gamePanel.btn4.getText());
+      }
+      if(e.getSource().equals(introPanel.button)){
+          client.thread.start();
       }
     }
 }

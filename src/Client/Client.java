@@ -28,7 +28,7 @@ public class Client extends Thread {
     public void setCurrentQuestion(Question q){
         currentQuestion = q;
         alternatives = q.getShuffledAlternatives();
-        gui.gamePanel.question.setText(currentQuestion.getQuestion());
+        gui.gamePanel.question.setText("<html><center>" + currentQuestion.getQuestion() + "</center></html>");
         gui.gamePanel.btn1.setText((String) alternatives.get(0));
         gui.gamePanel.btn2.setText((String) alternatives.get(1));
         gui.gamePanel.btn3.setText((String) alternatives.get(2));

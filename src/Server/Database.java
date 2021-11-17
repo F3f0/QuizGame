@@ -25,6 +25,7 @@ public class Database {
             qst.setQuestion(line.substring(line.indexOf(':')+2, line.indexOf('?')+1));
             temp = line.substring(line.indexOf('*')+1);
             cases = temp.split("\\*");
+            qst.setCorrectAnswer(cases[0]);
             qst.setCase1(cases[0]);
             qst.setCase2(cases[1]);
             qst.setCase3(cases[2]);

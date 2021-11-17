@@ -12,9 +12,18 @@ public class Question implements Serializable {
     private String case2;
     private String case3;
     private String case4;
+    private String correctAnswer;
+
 
 
     public Question(){};
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
 
     public String getCategory() {
         return category;

@@ -35,20 +35,18 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         while(true) {
-
-            currentPlayer.sendMessageToPlayer(questions.get(0));
+            System.out.println(questionNr);
+            currentPlayer.sendMessageToPlayer(questions.get(questionNr));
             String temp;
             temp = currentPlayer.receiver.getAnswer();
             System.out.println("Svar mottaget " + temp);
-            if (temp.equalsIgnoreCase(questions.get(questionNr).getCase1())) {
+            if (temp.equalsIgnoreCase(questions.get(questionNr).getCorrectAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
             } else {
                 currentPlayer.sendMessageToPlayer("Fel svar!");
             }
-            if(questionNr==0 && currentPlayer == playerTwo){
+            if(currentPlayer == playerTwo){
                 questionNr++;
-            } else if (questionNr == 1 && currentPlayer == playerTwo){
-                questionNr = 0;
             }
             if(currentPlayer == playerOne){
                 currentPlayer = playerTwo;

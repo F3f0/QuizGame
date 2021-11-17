@@ -52,7 +52,7 @@ public class GamePanel extends JPanel {
 
 
         question = new JLabel("Fråga");
-        question.setBackground(Color.GREEN);
+        question.setBackground(new Color(39, 117, 144 ));
         question.setForeground(Color.WHITE);
         question.setOpaque(true);
         question.setHorizontalAlignment(SwingConstants.CENTER);
