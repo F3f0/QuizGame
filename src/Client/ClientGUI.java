@@ -42,5 +42,9 @@ public class ClientGUI extends JFrame implements ActionListener{
         if(e.getSource().equals(gamePanel.btn4)){
             client.sendAnswer("4");
         }
+        if(e.getSource().equals(introPanel.button)){
+            client.thread.start();
+
+        }
     }
 }

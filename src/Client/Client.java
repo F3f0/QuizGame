@@ -21,15 +21,7 @@ public class Client extends Thread {
 
     public Client() {
         this.gui = new ClientGUI(this);
-        try{
-        socket = new Socket("localhost", 55555);
-        reciever = new Reciever(socket, this);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream(),true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        thread.start();
+
     }
 
     public void setCurrentQuestion(Question q){
@@ -61,8 +53,15 @@ public class Client extends Thread {
 
     @Override
     public void run() {
+        try{
+            socket = new Socket("localhost", 55555);
+            reciever = new Reciever(socket, this);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(),true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while(true) {
-
 
         }
     }

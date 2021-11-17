@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class IntroPanel extends JPanel {
-    private JButton button =  new JButton("Start");
+    JButton button =  new JButton("Start");
     private ImageIcon pictureIcon;
     private JLabel myLabel;
     private JPanel homePanel;
