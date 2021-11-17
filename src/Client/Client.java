@@ -1,6 +1,6 @@
 package Client;
 
-import Server.Question;
+import Questions.Question;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -53,6 +53,10 @@ public class Client extends Thread {
 
     @Override
     public void run() {
+        System.out.println("startar..");
+        gui.setContentPane(gui.scorePanel);
+        gui.repaint();
+        gui.revalidate();
         try{
             socket = new Socket("localhost", 55555);
             reciever = new Reciever(socket, this);

@@ -1,4 +1,4 @@
-package Server;
+package Questions;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ public class Question implements Serializable {
     private String case4;
     private String answer;
 
-    Question(){};
+    public Question(){};
 
     public String getQuestion() {
         return question;

@@ -1,5 +1,7 @@
 package Server;
 
+import Questions.Question;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

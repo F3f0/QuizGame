@@ -14,7 +14,7 @@ public class ClientGUI extends JFrame implements ActionListener{
     ScorePanel scorePanel;
     IntroPanel introPanel;
 
-  public ClientGUI(Client client){
+    public ClientGUI(Client client){
       this.client = client;
       gamePanel = new GamePanel(this);
       scorePanel = new ScorePanel();
@@ -36,15 +36,15 @@ public class ClientGUI extends JFrame implements ActionListener{
       if(e.getSource().equals(gamePanel.btn2)){
           client.sendAnswer("2");
       }
-        if(e.getSource().equals(gamePanel.btn3)){
+      if(e.getSource().equals(gamePanel.btn3)){
             client.sendAnswer("3");
-        }
-        if(e.getSource().equals(gamePanel.btn4)){
+      }
+      if(e.getSource().equals(gamePanel.btn4)){
             client.sendAnswer("4");
         }
         if(e.getSource().equals(introPanel.button)){
             client.thread.start();
 
-        }
+      }
     }
 }
