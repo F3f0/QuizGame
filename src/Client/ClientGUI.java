@@ -12,13 +12,14 @@ public class ClientGUI extends JFrame implements ActionListener{
     Client client;
     GamePanel gamePanel;
     ScorePanel scorePanel;
-
+    IntroPanel introPanel;
 
   public ClientGUI(Client client){
       this.client = client;
       gamePanel = new GamePanel(this);
       scorePanel = new ScorePanel();
-      this.setContentPane(gamePanel);
+      introPanel = new IntroPanel(this);
+      this.setContentPane(introPanel);
 
       pack();
       setVisible(true);
