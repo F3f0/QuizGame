@@ -2,8 +2,8 @@ package Server;
 
 
 import Questions.Question;
-
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class Game extends Thread {
@@ -19,8 +19,8 @@ public class Game extends Thread {
     Thread thread = new Thread(this);
     public Game() throws IOException {
         database= new Database();
-        questions = database.getQuestionForGame();
-
+        questions = database.getQuestionsForGame();
+        Collections.shuffle(questions);
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -38,7 +38,7 @@ public class Game extends Thread {
 
             currentPlayer.sendMessageToPlayer(questions.get(0));
             String temp;
-            temp = currentPlayer.reciever.getAnswer();
+            temp = currentPlayer.receiver.getAnswer();
             System.out.println("Svar mottaget " + temp);
             if (temp.equalsIgnoreCase(questions.get(questionNr).getCase1())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");

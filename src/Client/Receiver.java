@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class Reciever extends Thread {
+public class Receiver extends Thread {
     Thread thread;
     ObjectInputStream in;
     Socket socket;
     Client client;
     Object obj;
-    public Reciever(Socket socket, Client client){
+    public Receiver(Socket socket, Client client){
         this.socket = socket;
         this.client = client;
 

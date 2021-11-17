@@ -1,6 +1,9 @@
 package Questions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Question implements Serializable {
     private String category;
@@ -61,6 +64,13 @@ public class Question implements Serializable {
         this.case4 = case4;
     }
 
-
-
+    public List<String> getShuffledAlternatives(){
+        List<String>  alternatives= new ArrayList<>();
+        alternatives.add(this.getCase1());
+        alternatives.add(this.getCase2());
+        alternatives.add(this.getCase3());
+        alternatives.add(this.getCase4());
+        Collections.shuffle(alternatives);
+        return alternatives;
+    }
 }

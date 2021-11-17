@@ -6,12 +6,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ServerReciever extends Thread {
+public class ServerReceiver extends Thread {
     BufferedReader in;
     PrintWriter out;
     Thread thread;
     Socket socket;
-    public ServerReciever(Socket socket){
+    public ServerReceiver(Socket socket){
         try{
             this.socket=socket;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

@@ -31,16 +31,16 @@ public class ClientGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
       if(e.getSource().equals(gamePanel.btn1)){
-          client.sendAnswer("1");
+          client.sendAnswer(gamePanel.btn1.getText());
       }
       if(e.getSource().equals(gamePanel.btn2)){
-          client.sendAnswer("2");
+          client.sendAnswer(gamePanel.btn2.getText());
       }
       if(e.getSource().equals(gamePanel.btn3)){
-            client.sendAnswer("3");
+            client.sendAnswer(gamePanel.btn3.getText());
       }
       if(e.getSource().equals(gamePanel.btn4)){
-            client.sendAnswer("4");
+            client.sendAnswer(gamePanel.btn4.getText());
         }
         if(e.getSource().equals(introPanel.button)){
             client.thread.start();

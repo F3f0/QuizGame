@@ -8,16 +8,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 public class Client extends Thread {
-        //push
     Socket socket;
     BufferedReader in;
     PrintWriter out;
-    Reciever reciever;
+    Receiver receiver;
     Question currentQuestion;
     Thread thread = new Thread(this);
     ClientGUI gui;
+    List alternatives;
 
     public Client() {
         this.gui = new ClientGUI(this);
@@ -26,11 +27,12 @@ public class Client extends Thread {
 
     public void setCurrentQuestion(Question q){
         currentQuestion = q;
+        alternatives = q.getShuffledAlternatives();
         gui.gamePanel.question.setText(currentQuestion.getQuestion());
-        gui.gamePanel.btn1.setText(currentQuestion.getCase1());
-        gui.gamePanel.btn2.setText(currentQuestion.getCase2());
-        gui.gamePanel.btn3.setText(currentQuestion.getCase3());
-        gui.gamePanel.btn4.setText(currentQuestion.getCase4());
+        gui.gamePanel.btn1.setText((String) alternatives.get(0));
+        gui.gamePanel.btn2.setText((String) alternatives.get(1));
+        gui.gamePanel.btn3.setText((String) alternatives.get(2));
+        gui.gamePanel.btn4.setText((String) alternatives.get(3));
 
 
         //Behövs dessa?
@@ -59,7 +61,7 @@ public class Client extends Thread {
         gui.revalidate();
         try{
             socket = new Socket("localhost", 55555);
-            reciever = new Reciever(socket, this);
+            receiver = new Receiver(socket, this);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(),true);
         } catch (IOException e) {

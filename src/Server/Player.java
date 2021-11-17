@@ -1,7 +1,5 @@
 package Server;
 
-import Server.Game;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -12,13 +10,13 @@ public class Player extends Thread{
     Thread thread;
     BufferedReader in;
     ObjectOutputStream out;
-    ServerReciever reciever;
+    ServerReceiver receiver;
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;
         this.socket = socket;
         this.game = game;
-        reciever = new ServerReciever(socket);
+        receiver = new ServerReceiver(socket);
 
         try{
             out = new ObjectOutputStream(socket.getOutputStream());
