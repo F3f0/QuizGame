@@ -11,6 +11,7 @@ public class Server {
             Game game = new Game();
             try{
                 Player playerOne = new Player("Player 1", serverSocket.accept(), game);
+                playerOne.sendMessageToPlayer("Player 1");
                 Player playerTwo = new Player("Player 2", serverSocket.accept(), game);
                 game.setPlayerOne(playerOne);
                 game.setPlayerTwo(playerTwo);

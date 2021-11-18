@@ -11,6 +11,10 @@ public class Player extends Thread{
     BufferedReader in;
     ObjectOutputStream out;
     ServerReceiver receiver;
+    String q1;
+    String q2;
+    String q3;
+    String [] results = {q1,q2,q3};
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;
@@ -28,12 +32,17 @@ public class Player extends Thread{
 
     public void sendMessageToPlayer(Object o){
         try {
-            System.out.println(o);
             out.writeObject(o);
-            System.out.println("Klart");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setResults(int questionNr, String correctOrFalse){
+        results[questionNr-1] = correctOrFalse;
+    }
+    public String [] getResults(){
+        return results;
     }
 
 

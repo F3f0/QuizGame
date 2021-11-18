@@ -36,8 +36,16 @@ public class Receiver extends Thread {
                         client.gui.setContentPane(client.gui.gamePanel);
                         client.gui.repaint();
                         client.gui.revalidate();
+                        client.gui.scorePanel.player1.setText("Player 1");
+                        client.gui.scorePanel.player2.setText("Player 2");
                     } else if (obj instanceof String){
                         String s = (String) obj;
+                        if (s.equalsIgnoreCase("Player 1")){
+                            client.gui.scorePanel.player1.setText("You are player 1, waiting for player 2 to connect");
+                        }else if (s.equalsIgnoreCase("Player 2")){
+                            client.gui.scorePanel.player2.setText("You are player 2. Waiting for player 1 to finish round");
+                        }
+                        System.out.println(s);
                         client.gui.gamePanel.question.setText(s);
                         Thread.sleep(1500);
                         client.gui.setContentPane(client.gui.scorePanel);
