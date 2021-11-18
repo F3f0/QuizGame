@@ -39,7 +39,7 @@ public class Player extends Thread{
     }
 
     public void setResults(int questionNr, String correctOrFalse){
-        results[questionNr-1] = correctOrFalse;
+        results[questionNr] = correctOrFalse;
     }
     public String [] getResults(){
         return results;

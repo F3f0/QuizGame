@@ -56,7 +56,7 @@ public class Game extends Thread {
                 p2Answered = true;
             }
             if(p1Answered && p2Answered){
-                //nya frågor sen
+
                 questionNr = 0;
                 p1Answered = false;
                 p2Answered = false;
