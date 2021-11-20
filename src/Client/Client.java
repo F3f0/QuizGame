@@ -3,6 +3,7 @@ package Client;
 import Questions.Question;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,10 +20,49 @@ public class Client extends Thread {
     Thread thread = new Thread(this);
     ClientGUI gui;
     List alternatives;
+    int playerID;
 
     public Client() {
         this.gui = new ClientGUI(this);
+    }
 
+    public void setPlayerID(int ID){
+        playerID = ID;
+        if(playerID == 1){
+            gui.scorePanel.player1.setText("<html><center>" +"You are player 1, waiting for player 2 to connect" + "</center></html>");
+        } else if(playerID == 2){
+            gui.scorePanel.player2.setText("<html><center>" + "You are player 2. Waiting for player 1 to finish round" + "</center></html>");
+        }
+        System.out.println("PlayerID = " + playerID);
+    }
+
+    public void setResults(String[] s){
+        if (playerID == 1){
+            for (int i = 0; i <s.length ; i++) {
+                if(s[i].equalsIgnoreCase("correct")) {
+                    gui.scorePanel.currentRow.labels[i].setBackground(Color.GREEN);
+                } else if (s[i].equalsIgnoreCase("false")){
+                    gui.scorePanel.currentRow.labels[i].setBackground(Color.RED);
+                }
+            }
+
+        } else if (playerID == 2){
+            for (int i = 0; i <s.length ; i++) {
+                if(s[i].equalsIgnoreCase("correct")) {
+                    gui.scorePanel.currentRow.labels[i+4].setBackground(Color.GREEN);
+                } else if (s[i].equalsIgnoreCase("false")){
+                    gui.scorePanel.currentRow.labels[i+4].setBackground(Color.RED);
+                }
+            }
+        }
+        gui.scorePanel.repaint();
+        gui.scorePanel.revalidate();
+        System.out.println("Updated results");
+    }
+
+    public void setCurrentRow(){
+        gui.scorePanel.setCurrentRow();
+        System.out.println(gui.scorePanel.currentRowID);
     }
 
     public void setCurrentQuestion(Question q){

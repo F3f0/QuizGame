@@ -13,6 +13,9 @@ public class ScorePanel extends JPanel {
     Row row4;
     Row row5;
     Row row6;
+    Row currentRow;
+    Row[] rows;
+    int currentRowID = 0;
 
     JLabel player1;
     JLabel player2;
@@ -41,8 +44,6 @@ public class ScorePanel extends JPanel {
         row5 = new Row();
         row6 = new Row();
 
-
-
         lowerPanel.add(row1);
         lowerPanel.add(row2);
         lowerPanel.add(row3);
@@ -50,9 +51,17 @@ public class ScorePanel extends JPanel {
         lowerPanel.add(row5);
         lowerPanel.add(row6);
 
+        rows = new Row[]{row1,row2,row3,row4,row5,row6};
+
+
         row1.labels[0].setBackground(Color.GREEN);
         add(upperPanel, BorderLayout.NORTH);
         add(lowerPanel, BorderLayout.CENTER);
+        currentRow = rows[currentRowID];
+    }
 
+    public void setCurrentRow(){
+        currentRowID ++;
+        currentRow = rows[currentRowID];
     }
 }

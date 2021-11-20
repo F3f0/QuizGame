@@ -51,15 +51,18 @@ public class Game extends Thread {
             System.out.println(questionNr);
             if(currentPlayer == playerOne && questionNr == 3){
                 p1Answered = true;
+                currentPlayer.sendMessageToPlayer(currentPlayer.results);
             }
             else if (currentPlayer == playerTwo && questionNr == 3) {
                 p2Answered = true;
+                currentPlayer.sendMessageToPlayer(currentPlayer.results);
             }
             if(p1Answered && p2Answered){
-
                 questionNr = 0;
                 p1Answered = false;
                 p2Answered = false;
+                playerOne.sendMessageToPlayer("Next Round");
+                playerTwo.sendMessageToPlayer("Next Round");
             } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;

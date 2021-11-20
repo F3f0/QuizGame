@@ -38,12 +38,17 @@ public class Receiver extends Thread {
                         client.gui.revalidate();
                         client.gui.scorePanel.player1.setText("Player 1");
                         client.gui.scorePanel.player2.setText("Player 2");
+                    } else if(obj instanceof String []){
+                        client.setResults((String[]) obj);
                     } else if (obj instanceof String){
                         String s = (String) obj;
                         if (s.equalsIgnoreCase("Player 1")){
-                            client.gui.scorePanel.player1.setText("<html><center>" +"You are player 1, waiting for player 2 to connect" + "</center></html>");
+                            client.setPlayerID(1);
                         }else if (s.equalsIgnoreCase("Player 2")){
-                            client.gui.scorePanel.player2.setText("<html><center>" + "You are player 2. Waiting for player 1 to finish round" + "</center></html>");
+                            client.setPlayerID(2);
+                        } else if(s.equalsIgnoreCase("Next Round")){
+                            client.setCurrentRow();
+                            System.out.println("Recieved Next Round");
                         } else
                         {
                             System.out.println(s);
