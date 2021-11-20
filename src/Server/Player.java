@@ -32,6 +32,7 @@ public class Player extends Thread{
 
     public void sendMessageToPlayer(Object o){
         try {
+            out.reset();
             out.writeObject(o);
         } catch (IOException e) {
             e.printStackTrace();

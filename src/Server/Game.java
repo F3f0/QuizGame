@@ -43,9 +43,11 @@ public class Game extends Thread {
             if (temp.equalsIgnoreCase(questions.get(questionNr).getCorrectAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
                 currentPlayer.setResults(questionNr, "correct");
+                System.out.println("saved correct");
             } else {
                 currentPlayer.sendMessageToPlayer("Fel svar!");
                 currentPlayer.setResults(questionNr, "false");
+                System.out.println("saved false");
             }
             questionNr ++;
             System.out.println(questionNr);
@@ -57,7 +59,7 @@ public class Game extends Thread {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
             }
-            if(p1Answered && p2Answered){
+            if (p1Answered && p2Answered){
                 questionNr = 0;
                 p1Answered = false;
                 p2Answered = false;
