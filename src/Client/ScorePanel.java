@@ -10,9 +10,12 @@ public class ScorePanel extends JPanel {
     Row currentRow;
     Row[] rows;
     int currentRowID = 0;
+    int score1;
+    int score2;
 
     JLabel player1;
     JLabel player2;
+    JLabel score;
         
     public ScorePanel(){
         setLayout(new BorderLayout());
@@ -26,7 +29,11 @@ public class ScorePanel extends JPanel {
         player2 = new JLabel("Player2");
         player2.setForeground(Color.WHITE);
         player2.setHorizontalAlignment(SwingConstants.CENTER);
+        score = new JLabel("0 - 0");
+        score.setForeground(Color.white);
+        score.setHorizontalAlignment(SwingConstants.CENTER);
         upperPanel.add(player1);
+        upperPanel.add(score);
         upperPanel.add(player2);
         lowerPanel = new JPanel();
         //lowerPanel.setPreferredSize(new Dimension(500,500));
@@ -34,14 +41,14 @@ public class ScorePanel extends JPanel {
         lowerPanel.setLayout(new GridLayout(6,1));
 
 
-        row1 = new Row("History");
-            row1.setBackground(new Color(40, 55, 71));
-        row2 = new Row("Geography");
-            row2.setBackground(new Color(40, 55, 71));
-        row3 = new Row("Football");
-            row3.setBackground(new Color(40, 55, 71));
-        row4 = new Row("Music");
-            row4.setBackground(new Color(40, 55, 71));
+        row1 = new Row();
+
+        row2 = new Row();
+
+        row3 = new Row();
+
+        row4 = new Row();
+
 
 
         lowerPanel.add(row1);
