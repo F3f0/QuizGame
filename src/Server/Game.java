@@ -24,7 +24,7 @@ public class Game extends Thread {
     String score = "";
     Category categoryObj;
     String category;
-    ArrayList<ArrayList<Question>> questions;
+    ArrayList<ArrayList<Question>> questions; //Update master
 
     Thread thread = new Thread(this);
     public Game() throws IOException {
