@@ -16,10 +16,10 @@ public class GamePanel extends JPanel {
         JPanel bottomPanel = new JPanel();
         JPanel middlePanel = new JPanel();
         middlePanel.setPreferredSize(new Dimension(500,100));
-        middlePanel.setBackground(new Color(39, 117, 144 ));
+        middlePanel.setBackground(new Color(40, 55, 71));
         middlePanel.setLayout(new GridLayout());
         bottomPanel.setPreferredSize(new Dimension(250,250));
-        bottomPanel.setBackground(new Color(39, 117, 144 ));
+        bottomPanel.setBackground(new Color(40, 55, 71));
         bottomPanel.setLayout(new GridLayout(2,2,4,4));
 
         btn1 = new JButton("1");
@@ -52,7 +52,7 @@ public class GamePanel extends JPanel {
 
 
         question = new JLabel("Fråga");
-        question.setBackground(new Color(39, 117, 144 ));
+        question.setBackground(new Color(40, 55, 71));
         question.setForeground(Color.WHITE);
         question.setOpaque(true);
         question.setHorizontalAlignment(SwingConstants.CENTER);
