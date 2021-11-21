@@ -1,10 +1,8 @@
 package Server;
 
 
-import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,6 +15,10 @@ public class Game extends Thread {
     Player playerOne;
     Player playerTwo;
     Database database;
+    public int scoreP1;
+    public int scoreP2;
+    String score = "";
+    List<Question> questions;
     Category categoryObj;
     String category;
     ArrayList<ArrayList<Question>> questions;
@@ -40,7 +42,6 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
-
         while(true) {
             if(p1Answered && p2Answered && questionNr == 0) {
                 currentPlayer.askWhichCategory(categoryObj);
@@ -63,17 +64,24 @@ public class Game extends Thread {
             if(currentPlayer == playerOne && questionNr == 3){
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
+                scoreP1 = checkScore(currentPlayer.results);
             }
             else if (currentPlayer == playerTwo && questionNr == 3) {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
+                scoreP2 = checkScore(currentPlayer.results);
             }
+            playerOne.sendMessageToPlayer(score);
+            playerTwo.sendMessageToPlayer(score);
             if (p1Answered && p2Answered){
                 questionNr = 0;
                 p1Answered = false;
                 p2Answered = false;
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
+                setScore(scoreP1,scoreP2);
+                playerOne.sendMessageToPlayer(score);
+                playerTwo.sendMessageToPlayer(score);
             } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;
@@ -87,5 +95,19 @@ public class Game extends Thread {
         } else {
             currentPlayer = playerOne;
         }
+    }
+
+    public int checkScore(String[] s){
+        int points = 0;
+        for (int i = 0; i <s.length ; i++) {
+            if(s[i].equals("correct")){
+                points ++;
+            }
+        }
+        return points;
+    }
+
+    public void setScore(int scoreP1, int scoreP2){
+        score = "" + scoreP1 + " - " + scoreP2;
     }
 }

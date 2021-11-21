@@ -13,10 +13,10 @@ public class Row extends JPanel {
     JLabel l6;
     JLabel l7;
     JLabel [] labels;
-    public Row(String category){
+    public Row(){
         setPreferredSize(new Dimension(500,45));
         setLayout(new GridLayout(1,7,4,0));
-        setBackground(Color.white);
+        setBackground(new Color(40, 55, 71));
         setBorder(BorderFactory.createEmptyBorder(5,2,5,2));
 
 
@@ -31,9 +31,6 @@ public class Row extends JPanel {
             labels[i].setForeground(Color.white );
             labels[i].setBorder(line);
             labels[i].setOpaque(true);
-            if (i == 3){
-                labels[3].setText(category);
-            }
             this.add(labels[i]);
         }
 
