@@ -49,11 +49,10 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
         while(true) {
             if(p1Answered && p2Answered && questionNr == 0) {
-                System.out.println("Hej");
                 currentPlayer.askWhichCategory(categoryObj);
-                System.out.println("Hej");
                 category = currentPlayer.receiver.getAnswer();
-                System.out.println("Hej");
+                p1Answered = false;
+                p2Answered = false;
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));                //Fix
             String temp;
