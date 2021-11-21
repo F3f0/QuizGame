@@ -95,6 +95,8 @@ public class Client extends Thread {
         gui.gamePanel.btn2.setText((String) categories.get(1));
         gui.gamePanel.btn3.setText((String) categories.get(2));
         gui.gamePanel.btn4.setText((String) categories.get(3));
+        gui.repaint();
+        gui.revalidate();
     }
 
     public static void main(String[]args)  {

@@ -11,8 +11,8 @@ import java.util.List;
 public class Game extends Thread {
     public int roundNr = 1;
     public int questionNr = 0;
-    public boolean p1Answered;
-    public boolean p2Answered;
+    public boolean p1Answered = true;
+    public boolean p2Answered = true;
     Player currentPlayer;
     Player playerOne;
     Player playerTwo;
@@ -30,6 +30,8 @@ public class Game extends Thread {
     public Game() throws IOException {
         database= new Database();
         questions = database.getQuestionsByCategory(database.getQuestionsForGame());
+        categoryObj = new Category();
+        categoryObj= database.InitializeCategoryObjekt(categoryObj);
         Collections.shuffle(questions);
     }
 
@@ -47,8 +49,11 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
         while(true) {
             if(p1Answered && p2Answered && questionNr == 0) {
+                System.out.println("Hej");
                 currentPlayer.askWhichCategory(categoryObj);
+                System.out.println("Hej");
                 category = currentPlayer.receiver.getAnswer();
+                System.out.println("Hej");
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));                //Fix
             String temp;
@@ -119,5 +124,11 @@ public class Game extends Thread {
             scoreTotP2 ++;
         }
         score = "Score" + scoreTotP1 + " - " + scoreTotP2;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Game game = new Game();
+        System.out.println(game.questions.get(0).get(0).toString());
+
     }
 }

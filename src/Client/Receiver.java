@@ -32,13 +32,14 @@ public class Receiver extends Thread {
 
             try {
                 while (((obj = in.readObject())!=null)) {
-                    if(obj instanceof Category)
+                    if(obj instanceof Category) {
                         client.setCategoryQuestion((Category) obj);
                         client.gui.setContentPane(client.gui.gamePanel);
                         client.gui.repaint();
                         client.gui.revalidate();
                         client.gui.scorePanel.player1.setText("Player 1");
                         client.gui.scorePanel.player2.setText("Player 2");
+                    }
 
                     if(obj instanceof Question) {
                         client.setCurrentQuestion((Question)obj);

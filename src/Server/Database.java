@@ -1,5 +1,6 @@
 package Server;
 
+import Questions.Category;
 import Questions.Question;
 
 import java.io.BufferedReader;
@@ -63,22 +64,42 @@ public class Database {
 
         return listByCategory;
     }
+    public Category InitializeCategoryObjekt (Category ctgr){
+        ctgr.setHistory("History:");
+        ctgr.setGeography("Movies:");
+        ctgr.setSport("Sport:");
+        ctgr.setGeography("Geography:");
+        ctgr.setMusic("Music:");
+        ctgr.setComputers("Computers:");
+
+        return ctgr;
+    }
 
     public int getCategoryByNumber(String str) {
+        int temp;
         switch (str) {
             case "History:":
-                return 0;
+                temp = 0;
+                break;
             case "Movies:":
-                return 1;
+                temp = 1;
+                break;
             case "Sport:":
-                return 2;
+                temp = 2;
+                break;
             case "Geography:":
-                return 3;
+                temp = 3;
+                break;
             case "Music:":
-                return 4;
+                temp = 4;
+                break;
             case "Computers:":
-                return 5;
+                temp = 5;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + str);
         }
-        return -1;
+        return temp;
     }
+
 }
