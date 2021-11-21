@@ -63,6 +63,10 @@ public class Client extends Thread {
         System.out.println("Updated results");
     }
 
+    public void setScore(String s){
+        gui.scorePanel.score.setText(s.substring(5));
+    }
+
     public void setCurrentRow(){
         gui.scorePanel.setCurrentRow();
         System.out.println(gui.scorePanel.currentRowID);

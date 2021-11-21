@@ -15,8 +15,10 @@ public class Game extends Thread {
     Player playerOne;
     Player playerTwo;
     Database database;
-    public int scoreP1;
-    public int scoreP2;
+    public int pointsP1;
+    public int pointsP2;
+    public int scoreTotP1 = 0;
+    public int scoreTotP2 = 0;
     String score = "";
     List<Question> questions;
     Category categoryObj;
@@ -64,22 +66,20 @@ public class Game extends Thread {
             if(currentPlayer == playerOne && questionNr == 3){
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                scoreP1 = checkScore(currentPlayer.results);
+                pointsP1 = checkScore(currentPlayer.results);
             }
             else if (currentPlayer == playerTwo && questionNr == 3) {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                scoreP2 = checkScore(currentPlayer.results);
+                pointsP2 = checkScore(currentPlayer.results);
             }
-            playerOne.sendMessageToPlayer(score);
-            playerTwo.sendMessageToPlayer(score);
             if (p1Answered && p2Answered){
                 questionNr = 0;
                 p1Answered = false;
                 p2Answered = false;
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
-                setScore(scoreP1,scoreP2);
+                setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
             } else if (questionNr==3) {
@@ -107,7 +107,16 @@ public class Game extends Thread {
         return points;
     }
 
-    public void setScore(int scoreP1, int scoreP2){
-        score = "" + scoreP1 + " - " + scoreP2;
+    public void setScore(int pointsP1, int pointsP2){
+
+        if(pointsP1>pointsP2){
+            scoreTotP1 ++;
+        } else if(pointsP1<pointsP2){
+            scoreTotP2 ++;
+        } else if (pointsP1==pointsP2){
+            scoreTotP1 ++;
+            scoreTotP2 ++;
+        }
+        score = "Score" + scoreTotP1 + " - " + scoreTotP2;
     }
 }
