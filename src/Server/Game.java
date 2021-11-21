@@ -22,7 +22,6 @@ public class Game extends Thread {
     public int scoreTotP1 = 0;
     public int scoreTotP2 = 0;
     String score = "";
-    List<Question> questions;
     Category categoryObj;
     String category;
     ArrayList<ArrayList<Question>> questions;
