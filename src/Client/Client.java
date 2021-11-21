@@ -40,18 +40,18 @@ public class Client extends Thread {
         if (playerID == 1){
             for (int i = 0; i <s.length ; i++) {
                 if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i].setBackground(Color.GREEN);
+                    gui.scorePanel.currentRow.labels[i].setBackground(new Color(154,205,50));
                 } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i].setBackground(Color.RED);
+                    gui.scorePanel.currentRow.labels[i].setBackground(new Color(220,20,60));
                 }
             }
 
         } else if (playerID == 2){
             for (int i = 0; i <s.length ; i++) {
                 if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i+4].setBackground(Color.GREEN);
+                    gui.scorePanel.currentRow.labels[i+4].setBackground(new Color(154,205,50));
                 } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i+4].setBackground(Color.RED);
+                    gui.scorePanel.currentRow.labels[i+4].setBackground(new Color(220,20,60));
                 }
             }
         }

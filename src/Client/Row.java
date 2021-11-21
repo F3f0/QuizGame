@@ -1,6 +1,7 @@
 package Client;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class Row extends JPanel {
@@ -12,24 +13,30 @@ public class Row extends JPanel {
     JLabel l6;
     JLabel l7;
     JLabel [] labels;
-    public Row(){
+    public Row(String category){
         setPreferredSize(new Dimension(500,45));
         setLayout(new GridLayout(1,7,4,0));
         setBackground(Color.white);
         setBorder(BorderFactory.createEmptyBorder(5,2,5,2));
 
-         labels = new JLabel[] {l1,l2,l3,l4,l5,l6,l7};
+
+        labels = new JLabel[] {l1,l2,l3,l4,l5,l6,l7};
 
         for (int i = 0; i < labels.length ; i++) {
+            LineBorder line = new LineBorder(new Color(100,149,237),2,true);
             labels[i] = new JLabel("" + (i +1));
             labels[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             labels[i].setHorizontalAlignment(SwingConstants.CENTER);
-            labels[i].setBackground(Color.WHITE);
+            labels[i].setBackground(new Color(40, 55, 71));
+            labels[i].setForeground(Color.white );
+            labels[i].setBorder(line);
             labels[i].setOpaque(true);
+            if (i == 3){
+                labels[3].setText(category);
+            }
             this.add(labels[i]);
         }
 
-        labels[3].setText("<html><center>1</center><center>Historia</center> </html>");
 
 
     }
