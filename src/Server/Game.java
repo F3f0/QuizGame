@@ -1,8 +1,10 @@
 package Server;
 
 
+import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,12 +17,14 @@ public class Game extends Thread {
     Player playerOne;
     Player playerTwo;
     Database database;
-    List<Question> questions;
+    Category categoryObj;
+    String category;
+    ArrayList<ArrayList<Question>> questions;
 
     Thread thread = new Thread(this);
     public Game() throws IOException {
         database= new Database();
-        questions = database.getQuestionsForGame();
+        questions = database.getQuestionsByCategory(database.getQuestionsForGame());
         Collections.shuffle(questions);
     }
 
@@ -36,11 +40,16 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
+
         while(true) {
-            currentPlayer.sendMessageToPlayer(questions.get(questionNr));
+            if(p1Answered && p2Answered && questionNr == 0) {
+                currentPlayer.askWhichCategory(categoryObj);
+                category = currentPlayer.receiver.getAnswer();
+            }
+            currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));                //Fix
             String temp;
             temp = currentPlayer.receiver.getAnswer();
-            if (temp.equalsIgnoreCase(questions.get(questionNr).getCorrectAnswer())) {
+            if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {           // FiX
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
                 currentPlayer.setResults(questionNr, "correct");
                 System.out.println("saved correct");

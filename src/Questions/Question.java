@@ -14,9 +14,8 @@ public class Question implements Serializable {
     private String case4;
     private String correctAnswer;
 
-
-
     public Question(){};
+
     public String getCorrectAnswer() {
         return correctAnswer;
     }

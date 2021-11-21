@@ -1,5 +1,6 @@
 package Client;
 
+import Questions.Category;
 import Questions.Question;
 
 import javax.swing.*;
@@ -17,9 +18,11 @@ public class Client extends Thread {
     PrintWriter out;
     Receiver receiver;
     Question currentQuestion;
+    Category category;
     Thread thread = new Thread(this);
     ClientGUI gui;
     List alternatives;
+    List categories;
     int playerID;
 
     public Client() {
@@ -78,6 +81,16 @@ public class Client extends Thread {
         //Behövs dessa?
         gui.repaint();
         gui.revalidate();
+    }
+
+    public void setCategoryQuestion (Category c){
+        category = c;
+        categories = c.getShuffledCategories();
+        gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
+        gui.gamePanel.btn1.setText((String) categories.get(0));
+        gui.gamePanel.btn2.setText((String) categories.get(1));
+        gui.gamePanel.btn3.setText((String) categories.get(2));
+        gui.gamePanel.btn4.setText((String) categories.get(3));
     }
 
     public static void main(String[]args)  {

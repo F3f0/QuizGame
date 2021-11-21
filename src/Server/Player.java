@@ -1,5 +1,7 @@
 package Server;
 
+import Questions.Category;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -33,6 +35,13 @@ public class Player extends Thread{
     public void sendMessageToPlayer(Object o){
         try {
             out.reset();
+            out.writeObject(o);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void askWhichCategory(Object o){
+        try {
             out.writeObject(o);
         } catch (IOException e) {
             e.printStackTrace();
