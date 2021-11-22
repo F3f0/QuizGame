@@ -13,6 +13,8 @@ public class ScorePanel extends JPanel {
     int score1;
     int score2;
 
+    JButton button;
+
     JLabel player1;
     JLabel player2;
     JLabel score;
@@ -49,12 +51,13 @@ public class ScorePanel extends JPanel {
 
         row4 = new Row();
 
-
+        button = new JButton("Start new Round");
 
         lowerPanel.add(row1);
         lowerPanel.add(row2);
         lowerPanel.add(row3);
         lowerPanel.add(row4);
+        lowerPanel.add(button);
 
         rows = new Row[]{row1,row2,row3,row4};
 
