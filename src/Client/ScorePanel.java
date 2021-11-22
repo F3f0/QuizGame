@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ScorePanel extends JPanel {
-    int amountOfRows;
+    int amountOfRows = 4;
     JPanel upperPanel;
     JPanel lowerPanel;
     Row row1,row2,row3,row4;
@@ -45,13 +45,17 @@ public class ScorePanel extends JPanel {
         //lowerPanel.setPreferredSize(new Dimension(500,500));
         lowerPanel.setBackground(new Color(40, 55, 71));
         lowerPanel.setLayout(new GridLayout(6,1));
+        button = new JButton("Start new round");
 
         rows = new Row[amountOfRows];
 
-        for(int i = 0; i <= amountOfRows; i++){
+        for(int i = 0; i < rows.length; i++){
             rows[i] = new Row();
             lowerPanel.add(rows[i]);
         }
+        button.setVisible(false);
+        button.addActionListener(a);
+        lowerPanel.add(button);
 
         //row1.labels[0].setBackground(Color.GREEN);
         add(upperPanel, BorderLayout.NORTH);

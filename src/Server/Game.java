@@ -59,7 +59,6 @@ public class Game extends Thread {
                 p2Answered = false;
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            String temp;
             temp = currentPlayer.receiver.getAnswer();
             if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
