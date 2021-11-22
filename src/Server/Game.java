@@ -49,7 +49,6 @@ public class Game extends Thread {
             if (p1Answered && p2Answered && questionNr == 0) {
                 currentPlayer.sendMessageToPlayer("start?");
                 currentPlayer.receiver.getAnswer();
-                currentPlayer.askWhichCategory(categoryObj);
                 currentPlayer.sendMessageToPlayer(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
                 p1Answered = false;
