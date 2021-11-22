@@ -43,7 +43,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               revalidate();
               repaint();
           }
-          else if(gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("")){
+          else if(gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
               gamePanel.btn1.setBackground(Color.RED);
               revalidate();
               repaint();
@@ -56,7 +56,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               revalidate();
               repaint();
           } else if(correctAnswer.equalsIgnoreCase("")){}
-          else if(!gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals(""))
+          else if(!gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category"))
           {
               gamePanel.btn2.setBackground(Color.RED);
               revalidate();
@@ -69,7 +69,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               gamePanel.btn3.setBackground(Color.GREEN);
               revalidate();
               repaint();
-          } else if(!gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("")){
+          } else if(!gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
               gamePanel.btn3.setBackground(Color.RED);
               revalidate();
               repaint();
@@ -82,7 +82,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               revalidate();
               repaint();
           }
-          else if(!gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("")){
+          else if(!gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
               gamePanel.btn4.setBackground(Color.RED);
               revalidate();
               repaint();
