@@ -11,6 +11,7 @@ public class ScorePanel extends JPanel {
     Row row1,row2,row3,row4;
     Row currentRow;
     Row[] rows;
+
     int currentRowID = 0;
     int score1;
     int score2;

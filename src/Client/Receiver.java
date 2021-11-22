@@ -75,6 +75,7 @@ public class Receiver extends Thread {
                             System.out.println(s);
                             client.gui.gamePanel.question.setText(s);
                             Thread.sleep(1500);
+                            client.resetButtonColor();
                             client.gui.setContentPane(client.gui.scorePanel);
                             client.gui.repaint();
                             client.gui.revalidate();

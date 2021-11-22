@@ -100,6 +100,7 @@ public class Client extends Thread {
         gui.gamePanel.btn2.setText((String) alternatives.get(1));
         gui.gamePanel.btn3.setText((String) alternatives.get(2));
         gui.gamePanel.btn4.setText((String) alternatives.get(3));
+        gui.setCorrectAnswer(q.getCorrectAnswer());
 
 
         //Behövs dessa?
@@ -109,6 +110,7 @@ public class Client extends Thread {
 
     public void setCategoryQuestion (Category c){
         categories = c.getShuffledCategories();
+        gui.setCorrectAnswer("category");
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
         gui.gamePanel.btn1.setText((String) categories.get(0));
         gui.gamePanel.btn2.setText((String) categories.get(1));
@@ -116,6 +118,13 @@ public class Client extends Thread {
         gui.gamePanel.btn4.setText((String) categories.get(3));
         gui.repaint();
         gui.revalidate();
+    }
+
+    public void resetButtonColor(){
+        gui.gamePanel.btn1.setBackground(new Color(59, 89, 182));
+        gui.gamePanel.btn2.setBackground(new Color(59, 89, 182));
+        gui.gamePanel.btn3.setBackground(new Color(59, 89, 182));
+        gui.gamePanel.btn4.setBackground(new Color(59, 89, 182));
     }
 
     public static void main(String[]args)  {

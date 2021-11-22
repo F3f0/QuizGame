@@ -5,13 +5,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class Row extends JPanel {
-    JLabel l1;
-    JLabel l2;
-    JLabel l3;
-    JLabel l4;
-    JLabel l5;
-    JLabel l6;
-    JLabel l7;
+    public int amountOfQuestions = 3;
     JLabel [] labels;
     public Row(){
         setPreferredSize(new Dimension(500,45));
@@ -20,7 +14,7 @@ public class Row extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(5,2,5,2));
 
 
-        labels = new JLabel[] {l1,l2,l3,l4,l5,l6,l7};
+        labels = new JLabel[(amountOfQuestions * 2 + 1)];
 
         for (int i = 0; i < labels.length ; i++) {
             LineBorder line = new LineBorder(new Color(100,149,237),2,true);

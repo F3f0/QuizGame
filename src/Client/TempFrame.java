@@ -1,10 +1,13 @@
 package Client;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TempFrame extends JFrame {
+public class TempFrame extends JFrame implements ActionListener{
     ScorePanel scorePanel;
     public TempFrame(){
+        scorePanel = new ScorePanel(this);
        add(scorePanel);
        pack();
        setVisible(true);
@@ -13,5 +16,10 @@ public class TempFrame extends JFrame {
 
     public static void main(String[]args){
         TempFrame tempFrame = new TempFrame();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 }
