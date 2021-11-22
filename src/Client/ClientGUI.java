@@ -43,10 +43,11 @@ public class ClientGUI extends JFrame implements ActionListener{
               revalidate();
               repaint();
           }
-          else if(gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
+          else if(!gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
               gamePanel.btn1.setBackground(Color.RED);
               revalidate();
               repaint();
+              correctAnswer = "";
           }
       }
       if(e.getSource().equals(gamePanel.btn2)){
@@ -61,6 +62,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               gamePanel.btn2.setBackground(Color.RED);
               revalidate();
               repaint();
+              correctAnswer = "";
           }
       }
       if(e.getSource().equals(gamePanel.btn3)){
@@ -73,6 +75,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               gamePanel.btn3.setBackground(Color.RED);
               revalidate();
               repaint();
+              correctAnswer = "";
           }
       }
       if(e.getSource().equals(gamePanel.btn4)){
@@ -86,6 +89,7 @@ public class ClientGUI extends JFrame implements ActionListener{
               gamePanel.btn4.setBackground(Color.RED);
               revalidate();
               repaint();
+              correctAnswer = "";
           }
       }
       if(e.getSource().equals(introPanel.button)){
