@@ -2,22 +2,26 @@ package Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ScorePanel extends JPanel {
     int amountOfRows;
     JPanel upperPanel;
     JPanel lowerPanel;
+    Row row1,row2,row3,row4;
     Row currentRow;
     Row[] rows;
     int currentRowID = 0;
     int score1;
     int score2;
 
+    JButton button;
+
     JLabel player1;
     JLabel player2;
     JLabel score;
         
-    public ScorePanel(){
+    public ScorePanel(ActionListener a){
         setLayout(new BorderLayout());
         upperPanel = new JPanel();
         upperPanel.setPreferredSize(new Dimension(500,100));

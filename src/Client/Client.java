@@ -94,6 +94,7 @@ public class Client extends Thread {
     public void setCurrentQuestion(Question q){
         currentQuestion = q;
         alternatives = q.getShuffledAlternatives();
+        gui.scorePanel.currentRow.labels[3].setText(currentQuestion.getCategory());
         gui.gamePanel.question.setText("<html><center>" + currentQuestion.getQuestion() + "</center></html>");
         gui.gamePanel.btn1.setText((String) alternatives.get(0));
         gui.gamePanel.btn2.setText((String) alternatives.get(1));
@@ -128,6 +129,14 @@ public class Client extends Thread {
 
     public void sendAnswer(String s){
         out.println(s);
+    }
+
+    public void setEndResult(String s){
+        JOptionPane.showMessageDialog(null, "You " + s);
+    }
+
+    public void showStartButton(){
+        gui.scorePanel.button.setVisible(true);
     }
 
     @Override

@@ -46,8 +46,13 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
+        String temp = "";
         while (true) {
             if (p1Answered && p2Answered && questionNr == 0) {
+                currentPlayer.sendMessageToPlayer("start?");
+                temp = currentPlayer.receiver.getAnswer();
+                System.out.println(temp);
+
                 currentPlayer.sendMessageToPlayer(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
                 p1Answered = false;
@@ -81,11 +86,24 @@ public class Game extends Thread {
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
+                if(roundNr==4){
+                    if(scoreTotP1>scoreTotP2){
+                        playerOne.sendMessageToPlayer("won");
+                        playerTwo.sendMessageToPlayer("lost");
+                    } else if(scoreTotP1<scoreTotP2){
+                        playerTwo.sendMessageToPlayer("won");
+                        playerOne.sendMessageToPlayer("lost");
+                    } else{
+                        playerOne.sendMessageToPlayer("tied");
+                        playerTwo.sendMessageToPlayer("tied");
+                    }
+                }
+                questionNr = 0;
                 playerOne.sendMessageToPlayer(playerTwo.results);
                 playerTwo.sendMessageToPlayer(playerOne.results);
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
-            } else if (questionNr==maxQuestion) {
+            } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;
             }
