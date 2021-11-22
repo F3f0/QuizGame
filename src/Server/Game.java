@@ -31,8 +31,6 @@ public class Game extends Thread {
         database= new Database();
         questions = database.getQuestionsByCategory();
         categoryObj = new Category();
-        categoryObj = database.InitializeCategoryObject(categoryObj);
-        Collections.shuffle(questions);
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -49,19 +47,15 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
         while (true) {
             if (p1Answered && p2Answered && questionNr == 0) {
-                currentPlayer.askWhichCategory(categoryObj);
+                currentPlayer.sendMessageToPlayer(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
-                System.out.println(category);
                 p1Answered = false;
                 p2Answered = false;
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            System.out.println(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            System.out.println(category);
-
             String temp;
             temp = currentPlayer.receiver.getAnswer();
-            if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {           // FiX
+            if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {
                 currentPlayer.sendMessageToPlayer("Rätt svar!");
                 currentPlayer.setResults(questionNr, "correct");
                 System.out.println("saved correct");

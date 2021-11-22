@@ -40,14 +40,6 @@ public class Player extends Thread{
             e.printStackTrace();
         }
     }
-    public void askWhichCategory(Object o){
-        try {
-            out.reset();
-            out.writeObject(o);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void setResults(int questionNr, String correctOrFalse){
         results[0] = player;

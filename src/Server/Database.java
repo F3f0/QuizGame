@@ -46,6 +46,8 @@ public class Database {
         for(int i=0; i <= categories; i++) {
             listByCategory.add(new ArrayList());
         }
+        Collections.shuffle(questions);
+
         for(Question qst : questions)
             switch (qst.getCategory()){
                 case "History:":
@@ -69,16 +71,6 @@ public class Database {
             }
 
         return listByCategory;
-    }
-    public Category InitializeCategoryObject (Category ctgr){
-        ctgr.setHistory("History:");
-        ctgr.setMovies("Movies:");
-        ctgr.setSport("Sport:");
-        ctgr.setGeography("Geography:");
-        ctgr.setMusic("Music:");
-        ctgr.setComputers("Computers:");
-
-        return ctgr;
     }
 
     public int getCategoryByNumber(String str) {
