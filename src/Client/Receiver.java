@@ -65,6 +65,9 @@ public class Receiver extends Thread {
                             System.out.println("Recieved Next Round");
                         } else if(s.contains("Score")) {
                             client.setScore(s);
+                        } else if(s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
+                        s.equalsIgnoreCase("tie")) {
+                            client.setEndResult(s);
                         } else
                         {
                             System.out.println(s);

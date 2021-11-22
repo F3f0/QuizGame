@@ -32,7 +32,6 @@ public class Game extends Thread {
         questions = database.getQuestionsByCategory();
         categoryObj = new Category();
         categoryObj = database.InitializeCategoryObject(categoryObj);
-        Collections.shuffle(questions);
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -49,6 +48,8 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
         while (true) {
             if (p1Answered && p2Answered && questionNr == 0) {
+                currentPlayer.sendMessageToPlayer("start?");
+                currentPlayer.receiver.getAnswer();
                 currentPlayer.askWhichCategory(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
                 System.out.println(category);
@@ -56,7 +57,7 @@ public class Game extends Thread {
                 p2Answered = false;
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            System.out.println(questions.get(database.getCategoryByNumber(category)).get(questionNr));
+            System.out.println(questions.get(database.getCategoryByNumber(category)).get(questionNr).getQuestion());
             System.out.println(category);
 
             String temp;
@@ -82,14 +83,27 @@ public class Game extends Thread {
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
             } if (p1Answered && p2Answered){
-                questionNr = 0;
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
+                if(roundNr==4){
+                    if(scoreTotP1>scoreTotP2){
+                        playerOne.sendMessageToPlayer("won");
+                        playerTwo.sendMessageToPlayer("lost");
+                    } else if(scoreTotP1<scoreTotP2){
+                        playerTwo.sendMessageToPlayer("won");
+                        playerOne.sendMessageToPlayer("lost");
+                    } else{
+                        playerOne.sendMessageToPlayer("tied");
+                        playerTwo.sendMessageToPlayer("tied");
+                    }
+                }
+                questionNr = 0;
                 playerOne.sendMessageToPlayer(playerTwo.results);
                 playerTwo.sendMessageToPlayer(playerOne.results);
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
+                roundNr ++;
             } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;
