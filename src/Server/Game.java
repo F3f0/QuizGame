@@ -45,10 +45,13 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
+        String temp = "";
         while (true) {
             if (p1Answered && p2Answered && questionNr == 0) {
                 currentPlayer.sendMessageToPlayer("start?");
-                currentPlayer.receiver.getAnswer();
+                temp = currentPlayer.receiver.getAnswer();
+                System.out.println(temp);
+
                 currentPlayer.sendMessageToPlayer(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
                 p1Answered = false;
@@ -58,7 +61,7 @@ public class Game extends Thread {
             System.out.println(questions.get(database.getCategoryByNumber(category)).get(questionNr).getQuestion());
             System.out.println(category);
 
-            String temp;
+
             temp = currentPlayer.receiver.getAnswer();
             if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {           // FiX
                 currentPlayer.sendMessageToPlayer("Rätt svar!");

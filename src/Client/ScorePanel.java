@@ -2,6 +2,7 @@ package Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ScorePanel extends JPanel {
     JPanel upperPanel;
@@ -19,7 +20,7 @@ public class ScorePanel extends JPanel {
     JLabel player2;
     JLabel score;
         
-    public ScorePanel(){
+    public ScorePanel(ActionListener a){
         setLayout(new BorderLayout());
         upperPanel = new JPanel();
         upperPanel.setPreferredSize(new Dimension(500,100));
@@ -52,7 +53,8 @@ public class ScorePanel extends JPanel {
         row4 = new Row();
 
         button = new JButton("Start new Round");
-
+        button.setVisible(false);
+        button.addActionListener(a);
         lowerPanel.add(row1);
         lowerPanel.add(row2);
         lowerPanel.add(row3);

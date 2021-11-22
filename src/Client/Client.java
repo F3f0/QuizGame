@@ -135,6 +135,10 @@ public class Client extends Thread {
         JOptionPane.showMessageDialog(null, "You " + s);
     }
 
+    public void showStartButton(){
+        gui.scorePanel.button.setVisible(true);
+    }
+
     @Override
     public void run() {
         System.out.println("startar..");
