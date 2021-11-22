@@ -47,7 +47,7 @@ public class Game extends Thread {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
         String temp = "";
-        while (true) {
+        while (roundNr<5) {
             if (p1Answered && p2Answered && questionNr == 0) {
                 currentPlayer.sendMessageToPlayer("start?");
                 temp = currentPlayer.receiver.getAnswer();
@@ -102,11 +102,13 @@ public class Game extends Thread {
                 playerTwo.sendMessageToPlayer(playerOne.results);
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
+                roundNr ++;
             } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;
             }
         }
+        System.exit(0);
     }
 
     public void changePlayer(){
