@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScorePanel extends JPanel {
+    int amountOfRows;
     JPanel upperPanel;
     JPanel lowerPanel;
-    Row row1,row2,row3,row4;
     Row currentRow;
     Row[] rows;
     int currentRowID = 0;
@@ -40,24 +40,12 @@ public class ScorePanel extends JPanel {
         lowerPanel.setBackground(new Color(40, 55, 71));
         lowerPanel.setLayout(new GridLayout(6,1));
 
+        rows = new Row[amountOfRows];
 
-        row1 = new Row();
-
-        row2 = new Row();
-
-        row3 = new Row();
-
-        row4 = new Row();
-
-
-
-        lowerPanel.add(row1);
-        lowerPanel.add(row2);
-        lowerPanel.add(row3);
-        lowerPanel.add(row4);
-
-        rows = new Row[]{row1,row2,row3,row4};
-
+        for(int i = 0; i <= amountOfRows; i++){
+            rows[i] = new Row();
+            lowerPanel.add(rows[i]);
+        }
 
         //row1.labels[0].setBackground(Color.GREEN);
         add(upperPanel, BorderLayout.NORTH);

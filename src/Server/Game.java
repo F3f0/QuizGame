@@ -11,6 +11,7 @@ import java.util.List;
 public class Game extends Thread {
     public int roundNr = 1;
     public int questionNr = 0;
+    public int maxQuestion = 3;
     public boolean p1Answered = true;
     public boolean p2Answered = true;
     Player currentPlayer;
@@ -66,12 +67,12 @@ public class Game extends Thread {
             }
             questionNr ++;
             System.out.println(questionNr);
-            if (currentPlayer == playerOne && questionNr == 3){
+            if (currentPlayer == playerOne && questionNr == maxQuestion){
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP1 = checkScore(currentPlayer.results);
             }
-            else if (currentPlayer == playerTwo && questionNr == 3) {
+            else if (currentPlayer == playerTwo && questionNr == maxQuestion) {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
@@ -84,7 +85,7 @@ public class Game extends Thread {
                 playerTwo.sendMessageToPlayer(playerOne.results);
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
-            } else if (questionNr==3) {
+            } else if (questionNr==maxQuestion) {
                 changePlayer();
                 questionNr = 0;
             }
