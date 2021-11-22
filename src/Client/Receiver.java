@@ -52,8 +52,8 @@ public class Receiver extends Thread {
                         String[] temp1 = (String[]) obj;
                         client.setResults((String[]) obj);
                         for (int i = 0; i < temp1.length ; i++) {
-                                            System.out.println(" Svar: " + temp1[i]);
-                                        }
+                            System.out.println(" Svar: " + temp1[i]);
+                        }
                     } else if (obj instanceof String){
                         String s = (String) obj;
                         if (s.equalsIgnoreCase("Player 1")){

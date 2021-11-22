@@ -47,15 +47,16 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
-        while(true) {
-            if(p1Answered && p2Answered && questionNr == 0) {
+        while (true) {
+            if (p1Answered && p2Answered && questionNr == 0) {
                 currentPlayer.askWhichCategory(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
+                System.out.println(category);
                 p1Answered = false;
                 p2Answered = false;
             }
             currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            System.out.println(database.getCategoryByNumber(category));
+            System.out.println(questions.get(database.getCategoryByNumber(category)).get(questionNr));
             System.out.println(category);
 
             String temp;
@@ -71,7 +72,7 @@ public class Game extends Thread {
             }
             questionNr ++;
             System.out.println(questionNr);
-            if(currentPlayer == playerOne && questionNr == 3){
+            if (currentPlayer == playerOne && questionNr == 3){
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP1 = checkScore(currentPlayer.results);
@@ -80,16 +81,15 @@ public class Game extends Thread {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
-            }
-            if (p1Answered && p2Answered){
+            } if (p1Answered && p2Answered){
                 questionNr = 0;
-                p1Answered = false;
-                p2Answered = false;
-                playerOne.sendMessageToPlayer("Next Round");
-                playerTwo.sendMessageToPlayer("Next Round");
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
+                playerOne.sendMessageToPlayer(playerTwo.results);
+                playerTwo.sendMessageToPlayer(playerOne.results);
+                playerOne.sendMessageToPlayer("Next Round");
+                playerTwo.sendMessageToPlayer("Next Round");
             } else if (questionNr==3) {
                 changePlayer();
                 questionNr = 0;
@@ -107,7 +107,7 @@ public class Game extends Thread {
 
     public int checkScore(String[] s){
         int points = 0;
-        for (int i = 0; i <s.length ; i++) {
+        for (int i = 1; i <s.length ; i++) {
             if(s[i].equals("correct")){
                 points ++;
             }

@@ -16,7 +16,7 @@ public class Player extends Thread{
     String q1;
     String q2;
     String q3;
-    String [] results = {q1,q2,q3};
+    String [] results = {player,q1,q2,q3};
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;
@@ -50,7 +50,8 @@ public class Player extends Thread{
     }
 
     public void setResults(int questionNr, String correctOrFalse){
-        results[questionNr] = correctOrFalse;
+        results[0] = player;
+        results[questionNr + 1] = correctOrFalse;
     }
     public String [] getResults(){
         return results;

@@ -41,20 +41,39 @@ public class Client extends Thread {
 
     public void setResults(String[] s){
         if (playerID == 1){
-            for (int i = 0; i <s.length ; i++) {
-                if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i].setBackground(new Color(154,205,50));
-                } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i].setBackground(new Color(220,20,60));
+            if (s[0].equals("Player 1")) {
+                for (int i = 1; i < s.length; i++) {
+                    if (s[i].equalsIgnoreCase("correct")) {
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(154, 205, 50));
+                    } else if (s[i].equalsIgnoreCase("false")) {
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(220, 20, 60));
+                    }
+                }
+            } else {
+                for (int i = 1; i <s.length ; i++) {
+                    if(s[i].equalsIgnoreCase("correct")) {
+                        gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(154,205,50));
+                    } else if (s[i].equalsIgnoreCase("false")){
+                        gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(220,20,60));
+                    }
                 }
             }
 
         } else if (playerID == 2){
-            for (int i = 0; i <s.length ; i++) {
+            if (s[0].equals("Player 2"))
+            for (int i = 1; i <s.length ; i++) {
                 if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i+4].setBackground(new Color(154,205,50));
+                    gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(154,205,50));
                 } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i+4].setBackground(new Color(220,20,60));
+                    gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(220,20,60));
+                }
+            } else {
+                for (int i = 1; i < s.length; i++) {
+                    if (s[i].equalsIgnoreCase("correct")) {
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(154, 205, 50));
+                    } else if (s[i].equalsIgnoreCase("false")) {
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(220, 20, 60));
+                    }
                 }
             }
         }
