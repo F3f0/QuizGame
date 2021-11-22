@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Category implements Serializable {
-    String History;
-    String Movies;
-    String Sport;
-    String Geography;
-    String Music;
-    String Computers;
+    String History = "History:";
+    String Movies = "Movies:";
+    String Sport = "Sport:";
+    String Geography = "Geography:";
+    String Music = "Music:";
+    String Computers ="Computers:";
 
     public Category() {}
 

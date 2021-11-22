@@ -31,7 +31,6 @@ public class Game extends Thread {
         database= new Database();
         questions = database.getQuestionsByCategory();
         categoryObj = new Category();
-        categoryObj = database.InitializeCategoryObject(categoryObj);
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -51,8 +50,8 @@ public class Game extends Thread {
                 currentPlayer.sendMessageToPlayer("start?");
                 currentPlayer.receiver.getAnswer();
                 currentPlayer.askWhichCategory(categoryObj);
+                currentPlayer.sendMessageToPlayer(categoryObj);
                 category = currentPlayer.receiver.getAnswer();
-                System.out.println(category);
                 p1Answered = false;
                 p2Answered = false;
             }
@@ -83,6 +82,7 @@ public class Game extends Thread {
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
             } if (p1Answered && p2Answered){
+                questionNr = 0;
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
