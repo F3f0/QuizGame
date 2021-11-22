@@ -88,7 +88,6 @@ public class Client extends Thread {
     }
 
     public void setCategoryQuestion (Category c){
-        category = c;
         categories = c.getShuffledCategories();
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
         gui.gamePanel.btn1.setText((String) categories.get(0));

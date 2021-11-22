@@ -29,9 +29,9 @@ public class Game extends Thread {
     Thread thread = new Thread(this);
     public Game() throws IOException {
         database= new Database();
-        questions = database.getQuestionsByCategory(database.getQuestionsForGame());
+        questions = database.getQuestionsByCategory();
         categoryObj = new Category();
-        categoryObj= database.InitializeCategoryObjekt(categoryObj);
+        categoryObj = database.InitializeCategoryObject(categoryObj);
         Collections.shuffle(questions);
     }
 
@@ -54,7 +54,10 @@ public class Game extends Thread {
                 p1Answered = false;
                 p2Answered = false;
             }
-            currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));                //Fix
+            currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
+            System.out.println(database.getCategoryByNumber(category));
+            System.out.println(category);
+
             String temp;
             temp = currentPlayer.receiver.getAnswer();
             if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {           // FiX
