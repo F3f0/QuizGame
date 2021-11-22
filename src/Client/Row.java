@@ -30,6 +30,9 @@ public class Row extends JPanel {
             labels[i].setBackground(new Color(40, 55, 71));
             labels[i].setForeground(Color.white );
             labels[i].setBorder(line);
+            if(i==3){
+                labels[3].setText("??");
+            }
             labels[i].setOpaque(true);
             this.add(labels[i]);
         }
