@@ -26,6 +26,7 @@ public class Game extends Thread {
     Category categoryObj;
     String category;
     ArrayList<ArrayList<Question>> questions;
+    String temp = "";
 
     Thread thread = new Thread(this);
     public Game() throws IOException {
@@ -46,41 +47,22 @@ public class Game extends Thread {
     public void run() {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
-        String temp = "";
+
         while (roundNr<5) {
             if (p1Answered && p2Answered && questionNr == 0) {
-                currentPlayer.sendMessageToPlayer("start?");
-                temp = currentPlayer.receiver.getAnswer();
-                System.out.println(temp);
-
-                currentPlayer.sendMessageToPlayer(categoryObj);
-                category = currentPlayer.receiver.getAnswer();
+                startNewRound();
+                sendAndRecieveCategory();
                 p1Answered = false;
                 p2Answered = false;
             }
-            currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
-            temp = currentPlayer.receiver.getAnswer();
-            if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {
-                currentPlayer.sendMessageToPlayer("Rätt svar!");
-                currentPlayer.setResults(questionNr, "correct");
-                System.out.println("saved correct");
-            } else {
-                currentPlayer.sendMessageToPlayer("Fel svar!");
-                currentPlayer.setResults(questionNr, "false");
-                System.out.println("saved false");
-            }
+            sendQuestion();
+            getAnswer();
+            registerResult();
             questionNr ++;
-            System.out.println(questionNr);
-            if (currentPlayer == playerOne && questionNr == maxQuestion){
-                p1Answered = true;
-                currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                pointsP1 = checkScore(currentPlayer.results);
+            if (questionNr == maxQuestion) {
+                updatePlayerPoints();
             }
-            else if (currentPlayer == playerTwo && questionNr == maxQuestion) {
-                p2Answered = true;
-                currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                pointsP2 = checkScore(currentPlayer.results);
-            } if (p1Answered && p2Answered){
+            if (p1Answered && p2Answered){
                 questionNr = 0;
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
@@ -145,6 +127,47 @@ public class Game extends Thread {
     public static void main(String[] args) throws IOException {
         Game game = new Game();
         System.out.println(game.questions.get(0).get(0).toString());
+    }
+
+    public void startNewRound(){
+        currentPlayer.sendMessageToPlayer("start?");
+        temp = currentPlayer.receiver.getAnswer();
+    }
+
+    public void sendAndRecieveCategory(){
+        currentPlayer.sendMessageToPlayer(categoryObj);
+        category = currentPlayer.receiver.getAnswer();
+    }
+
+    public void sendQuestion(){
+        currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
+    }
+
+    public void getAnswer(){
+        temp = currentPlayer.receiver.getAnswer();
+    }
+
+    public void registerResult(){
+        if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {
+            currentPlayer.sendMessageToPlayer("Rätt svar!");
+            currentPlayer.setResults(questionNr, "correct");
+        } else {
+            currentPlayer.sendMessageToPlayer("Fel svar!");
+            currentPlayer.setResults(questionNr, "false");
+        }
+    }
+
+    public void updatePlayerPoints(){
+
+            if(currentPlayer == playerOne) {
+                p1Answered = true;
+                currentPlayer.sendMessageToPlayer(currentPlayer.results);
+                pointsP1 = checkScore(currentPlayer.results);
+            } else if(currentPlayer == playerTwo){
+                p2Answered = true;
+                currentPlayer.sendMessageToPlayer(currentPlayer.results);
+                pointsP2 = checkScore(currentPlayer.results);
+            }
 
     }
 }
