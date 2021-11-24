@@ -149,7 +149,6 @@ public class Client extends Thread {
 
     public void setEndResult(String s){
         JOptionPane.showMessageDialog(null, "You " + s);
-        thread.start();
     }
 
     public void showStartButton(){

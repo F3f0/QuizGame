@@ -99,8 +99,5 @@ public class Receiver extends Thread {
         }
     }
 
-    public static void main(String[] args) {
-        Receiver rec = new Receiver();
-    }
 }
 
