@@ -1,6 +1,7 @@
 package Server;
 
 
+import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +49,6 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
 
         while (true) {
-            System.out.println("amount" + amountOfQuestions);
             if (p1Answered && p2Answered && questionNr == 0) {
                 startNewRound();
                 sendAndRecieveCategory();

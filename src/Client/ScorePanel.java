@@ -46,6 +46,12 @@ public class ScorePanel extends JPanel {
         lowerPanel.setBackground(new Color(40, 55, 71));
         lowerPanel.setLayout(new GridLayout(6,1));
         button = new JButton("Start new round");
+        button.setFont(new Font("Serif",Font.BOLD,20));
+        button.setBackground(new Color(236, 112, 99));
+        button.setForeground(Color.WHITE);
+
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
 
         rows = new Row[amountOfRows];
 
