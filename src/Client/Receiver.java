@@ -1,10 +1,10 @@
 package Client;
 
-import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -40,8 +40,8 @@ public class Receiver extends Thread {
                                 Integer.parseInt(((Properties) obj).getProperty("amountOfQuestions")));
                         System.out.println("KLART");
                     }
-                    if(obj instanceof Category) {
-                        client.setCategoryQuestion((Category) obj);
+                    if(obj instanceof List<?>) {
+                        client.setCategoryQuestion((List<?>) obj);
                         client.gui.setContentPane(client.gui.gamePanel);
                         client.gui.repaint();
                         client.gui.revalidate();
@@ -76,7 +76,7 @@ public class Receiver extends Thread {
                         } else if(s.contains("Score")) {
                             client.setScore(s);
                         } else if(s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
-                        s.equalsIgnoreCase("tie")) {
+                        s.equalsIgnoreCase("tied")) {
                             client.setEndResult(s);
                         } else if(s.equalsIgnoreCase("start?")){
                             client.showStartButton();

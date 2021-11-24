@@ -1,7 +1,5 @@
 package Server;
 
-import Questions.Category;
-
 import java.io.*;
 import java.net.Socket;
 

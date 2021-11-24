@@ -1,10 +1,10 @@
 package Server;
 
 
-import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends Thread {
     public int amountOfQuestions;
@@ -22,16 +22,16 @@ public class Game extends Thread {
     public int scoreTotP1 = 0;
     public int scoreTotP2 = 0;
     String score = "";
-    Category categoryObj;
     String category;
     ArrayList<ArrayList<Question>> questions;
     String temp = "";
+    List<String> categories;
 
     Thread thread = new Thread(this);
     public Game() throws IOException {
         database= new Database();
         questions = database.getQuestionsByCategory();
-        categoryObj = new Category();
+        categories = database.getCategoryList();
     }
 
     public void setPlayerOne(Player playerOne) {
@@ -133,7 +133,7 @@ public class Game extends Thread {
     }
 
     public void sendAndRecieveCategory(){
-        currentPlayer.sendMessageToPlayer(categoryObj);
+        currentPlayer.sendMessageToPlayer(categories);
         category = currentPlayer.receiver.getAnswer();
     }
 

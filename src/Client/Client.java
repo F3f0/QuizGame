@@ -1,6 +1,5 @@
 package Client;
 
-import Questions.Category;
 import Questions.Question;
 
 import javax.swing.*;
@@ -115,8 +114,8 @@ public class Client extends Thread {
         gui.revalidate();
     }
 
-    public void setCategoryQuestion (Category c){
-        categories = c.getShuffledCategories();
+    public void setCategoryQuestion (List<?> c){
+        categories = c;
         gui.setCorrectAnswer("category");
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
         gui.gamePanel.btn1.setText((String) categories.get(0));
@@ -169,8 +168,8 @@ public class Client extends Thread {
         gui.setContentPane(gui.scorePanel);
         gui.repaint();
         gui.revalidate();
-        while(true) {
+    }
+    public void removeCategory (String str){
 
-        }
     }
 }

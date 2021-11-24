@@ -1,13 +1,11 @@
 package Server;
 
-import Questions.Category;
 import Questions.Question;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,6 +68,19 @@ public class Database {
                     break;
             }
         return listByCategory;
+    }
+
+    public List<String> getCategoryList(){
+        List<String> list = new ArrayList<>();
+        list.add("Histori");
+        list.add("Movies");
+        list.add("Sport");
+        list.add("Geography");
+        list.add("Music");
+        list.add("Computers");
+        Collections.shuffle(list);
+        return list;
+
     }
 
     public int getCategoryByNumber(String str) {
