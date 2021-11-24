@@ -17,7 +17,6 @@ public class Client extends Thread {
     PrintWriter out;
     Receiver receiver;
     Question currentQuestion;
-    Category category;
     Thread thread = new Thread(this);
     ClientGUI gui;
     List alternatives;
@@ -120,12 +119,23 @@ public class Client extends Thread {
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
         if(categories.size()>0) {
             gui.gamePanel.btn1.setText((String) categories.get(0));
-        } if (categories.size()>1)
-        gui.gamePanel.btn2.setText((String) categories.get(1));
-        if(categories.size()>2)
-        gui.gamePanel.btn3.setText((String) categories.get(2));
-        if(categories.size()>3)
-        gui.gamePanel.btn4.setText((String) categories.get(3));
+        } else{
+            gui.gamePanel.btn1.setText("");
+        } if (categories.size()>1) {
+            gui.gamePanel.btn2.setText((String) categories.get(1));
+        } else {
+            gui.gamePanel.btn2.setText("");
+        }
+        if(categories.size()>2) {
+            gui.gamePanel.btn3.setText((String) categories.get(2));
+        } else{
+            gui.gamePanel.btn3.setText("");
+        }
+        if(categories.size()>3) {
+            gui.gamePanel.btn4.setText((String) categories.get(3));
+        } else{
+            gui.gamePanel.btn4.setText("");
+        }
         gui.repaint();
         gui.revalidate();
     }
@@ -151,8 +161,18 @@ public class Client extends Thread {
     }
 
     public void setEndResult(String s){
-        JOptionPane.showMessageDialog(null, "You " + s);
-        thread.start();
+        int knappNr = (JOptionPane.showConfirmDialog(null, "You " + s + ". New game?"));
+        if (knappNr == JOptionPane.YES_OPTION) {
+            try {
+                socket = new Socket("localhost", 55555);
+                receiver = new Receiver(socket, this);
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else System.exit(0);
     }
 
     public void showStartButton(){
@@ -173,8 +193,5 @@ public class Client extends Thread {
         gui.setContentPane(gui.scorePanel);
         gui.repaint();
         gui.revalidate();
-    }
-    public void removeCategory (String str){
-
     }
 }

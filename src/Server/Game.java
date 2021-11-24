@@ -1,7 +1,6 @@
 package Server;
 
 
-import Questions.Category;
 import Questions.Question;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +49,7 @@ public class Game extends Thread {
 
         while (true) {
             if (p1Answered && p2Answered && questionNr == 0) {
+                removeCategory();
                 startNewRound();
                 sendAndRecieveCategory();
                 p1Answered = false;
@@ -156,8 +156,15 @@ public class Game extends Thread {
         }
     }
 
-    public void updatePlayerPoints(){
+    public void removeCategory(){
+        for (int i = 0; i <categories.size() ; i ++) {
+            if(categories.get(i).equals(category)){
+                categories.remove(categories.get(i));
+            }
+        }
+    }
 
+    public void updatePlayerPoints(){
             if(currentPlayer == playerOne) {
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
@@ -167,6 +174,5 @@ public class Game extends Thread {
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
             }
-
     }
 }

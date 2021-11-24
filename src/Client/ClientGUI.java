@@ -44,60 +44,65 @@ public class ClientGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
       if(e.getSource().equals(gamePanel.btn1)){
-          client.sendAnswer(gamePanel.btn1.getText());
-          System.out.println("skickat");
-          if(gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer)){
-              gamePanel.btn1.setBackground(new Color(88, 214, 141));
-              revalidate();
-              repaint();
-          }
-          else if(!gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
-              gamePanel.btn1.setBackground(new Color(192, 57, 43 ));
-              revalidate();
-              repaint();
-              correctAnswer = "";
+          if(!gamePanel.btn1.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn1.getText());
+              System.out.println("skickat");
+              if (gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer)) {
+                  gamePanel.btn1.setBackground(new Color(88, 214, 141));
+                  revalidate();
+                  repaint();
+              } else if (!gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+                  gamePanel.btn1.setBackground(new Color(192, 57, 43));
+                  revalidate();
+                  repaint();
+                  correctAnswer = "";
+              }
           }
       }
       if(e.getSource().equals(gamePanel.btn2)){
-          client.sendAnswer(gamePanel.btn2.getText());
-          if(gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer)){
-              gamePanel.btn2.setBackground( new Color(88, 214, 141));
-              revalidate();
-              repaint();
-          } else if(correctAnswer.equalsIgnoreCase("")){}
-          else if(!gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category"))
-          {
-              gamePanel.btn2.setBackground(new Color(192, 57, 43 ));
-              revalidate();
-              repaint();
-              correctAnswer = "";
+          if(!gamePanel.btn2.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn2.getText());
+              if (gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer)) {
+                  gamePanel.btn2.setBackground(new Color(88, 214, 141));
+                  revalidate();
+                  repaint();
+              } else if (correctAnswer.equalsIgnoreCase("")) {
+              } else if (!gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+                  gamePanel.btn2.setBackground(new Color(192, 57, 43));
+                  revalidate();
+                  repaint();
+                  correctAnswer = "";
+              }
           }
       }
       if(e.getSource().equals(gamePanel.btn3)){
-          client.sendAnswer(gamePanel.btn3.getText());
-          if(gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer)){
-              gamePanel.btn3.setBackground(new Color(88, 214, 141));
-              revalidate();
-              repaint();
-          } else if(!gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
-              gamePanel.btn3.setBackground(new Color(192, 57, 43 ));
-              revalidate();
-              repaint();
-              correctAnswer = "";
+          if(!gamePanel.btn3.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn3.getText());
+              if (gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer)) {
+                  gamePanel.btn3.setBackground(new Color(88, 214, 141));
+                  revalidate();
+                  repaint();
+              } else if (!gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+                  gamePanel.btn3.setBackground(new Color(192, 57, 43));
+                  revalidate();
+                  repaint();
+                  correctAnswer = "";
+              }
           }
       }
       if(e.getSource().equals(gamePanel.btn4)){
-          client.sendAnswer(gamePanel.btn4.getText());
-          if(gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer)){
-              gamePanel.btn4.setBackground(new Color(88, 214, 141));
-              revalidate();
-              repaint();
-          }
-          else if(!gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")){
-              gamePanel.btn4.setBackground(new Color(192, 57, 43 ));
-              revalidate();
-              repaint();
-              correctAnswer = "";
+          if(!gamePanel.btn4.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn4.getText());
+              if (gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer)) {
+                  gamePanel.btn4.setBackground(new Color(88, 214, 141));
+                  revalidate();
+                  repaint();
+              } else if (!gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+                  gamePanel.btn4.setBackground(new Color(192, 57, 43));
+                  revalidate();
+                  repaint();
+                  correctAnswer = "";
+              }
           }
       }
       if(e.getSource().equals(introPanel.button)){

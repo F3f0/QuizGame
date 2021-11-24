@@ -72,7 +72,7 @@ public class Database {
 
     public List<String> getCategoryList(){
         List<String> list = new ArrayList<>();
-        list.add("Histori");
+        list.add("History");
         list.add("Movies");
         list.add("Sport");
         list.add("Geography");
