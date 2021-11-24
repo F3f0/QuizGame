@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.Properties;
 
 
+
 public class Receiver extends Thread {
     Thread thread;
     ObjectInputStream in;
@@ -26,8 +27,6 @@ public class Receiver extends Thread {
         thread = new Thread(this);
         thread.start();
     }
-
-    public Receiver() {}
 
     public void run(){
         while(true) {

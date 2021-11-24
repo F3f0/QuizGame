@@ -3,12 +3,8 @@ package Server;
 
 import Questions.Category;
 import Questions.Question;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class Game extends Thread {
     public int amountOfQuestions;
@@ -129,7 +125,6 @@ public class Game extends Thread {
 
     public static void main(String[] args) throws IOException {
         Game game = new Game();
-        System.out.println(game.questions.get(0).get(0).toString());
     }
 
     public void startNewRound(){
