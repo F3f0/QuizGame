@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ScorePanel extends JPanel {
-    int amountOfRows = 4;
+
     JPanel upperPanel;
     JPanel lowerPanel;
     Row row1,row2,row3,row4;
@@ -23,7 +23,7 @@ public class ScorePanel extends JPanel {
     JLabel player2;
     JLabel score;
         
-    public ScorePanel(ActionListener a){
+    public ScorePanel(ActionListener a, int amountOfRows, int amountOfQuestions){
         setLayout(new BorderLayout());
         upperPanel = new JPanel();
         upperPanel.setPreferredSize(new Dimension(500,100));
@@ -50,7 +50,7 @@ public class ScorePanel extends JPanel {
         rows = new Row[amountOfRows];
 
         for(int i = 0; i < rows.length; i++){
-            rows[i] = new Row();
+            rows[i] = new Row(amountOfQuestions);
             lowerPanel.add(rows[i]);
         }
         button.setVisible(false);

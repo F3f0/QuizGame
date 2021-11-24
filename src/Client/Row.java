@@ -7,7 +7,8 @@ import java.awt.*;
 public class Row extends JPanel {
     public int amountOfQuestions = 3;
     JLabel [] labels;
-    public Row(){
+    public Row(int amountOfQuestions){
+        this.amountOfQuestions = amountOfQuestions;
         setPreferredSize(new Dimension(500,45));
         setLayout(new GridLayout(1,7,4,0));
         setBackground(new Color(40, 55, 71));

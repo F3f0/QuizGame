@@ -18,8 +18,6 @@ public class ClientGUI extends JFrame implements ActionListener{
 
     public ClientGUI(Client client){
       this.client = client;
-      gamePanel = new GamePanel(this);
-      scorePanel = new ScorePanel(this);
       introPanel = new IntroPanel(this);
       this.setContentPane(introPanel);
 
@@ -27,6 +25,11 @@ public class ClientGUI extends JFrame implements ActionListener{
       setVisible(true);
       setLocationRelativeTo(null);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
+  }
+
+  public void setRemainingPanels(int amountOfRows, int amountOfQuestions){
+      gamePanel = new GamePanel(this);
+      scorePanel = new ScorePanel(this, amountOfRows, amountOfQuestions);
   }
 
     public void setCorrectAnswer(String correctAnswer) {

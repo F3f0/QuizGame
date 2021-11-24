@@ -39,6 +39,10 @@ public class Client extends Thread {
         System.out.println("PlayerID = " + playerID);
     }
 
+    public void setProperties(int amountOfRows, int amountOfQuestions){
+        gui.setRemainingPanels(amountOfRows, amountOfQuestions);
+    }
+
     public void setResults(String[] s){
         if (playerID == 1){
             if (s[0].equals("Player 1")) {
