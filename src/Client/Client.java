@@ -119,9 +119,13 @@ public class Client extends Thread {
         categories = c.getShuffledCategories();
         gui.setCorrectAnswer("category");
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
-        gui.gamePanel.btn1.setText((String) categories.get(0));
+        if(categories.size()>0) {
+            gui.gamePanel.btn1.setText((String) categories.get(0));
+        } if (categories.size()>1)
         gui.gamePanel.btn2.setText((String) categories.get(1));
+        if(categories.size()>2)
         gui.gamePanel.btn3.setText((String) categories.get(2));
+        if(categories.size()>3)
         gui.gamePanel.btn4.setText((String) categories.get(3));
         gui.repaint();
         gui.revalidate();
@@ -149,6 +153,7 @@ public class Client extends Thread {
 
     public void setEndResult(String s){
         JOptionPane.showMessageDialog(null, "You " + s);
+        thread.start();
     }
 
     public void showStartButton(){

@@ -76,7 +76,7 @@ public class Receiver extends Thread {
                         } else if(s.contains("Score")) {
                             client.setScore(s);
                         } else if(s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
-                        s.equalsIgnoreCase("tie")) {
+                        s.equalsIgnoreCase("tied")) {
                             client.setEndResult(s);
                         } else if(s.equalsIgnoreCase("start?")){
                             client.showStartButton();

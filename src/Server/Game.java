@@ -23,7 +23,7 @@ public class Game extends Thread {
     public int scoreTotP2 = 0;
     String score = "";
     Category categoryObj;
-    String category;
+    String category = "";
     ArrayList<ArrayList<Question>> questions;
     String temp = "";
 
@@ -48,7 +48,6 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
 
         while (true) {
-            System.out.println("amount" + amountOfQuestions);
             if (p1Answered && p2Answered && questionNr == 0) {
                 startNewRound();
                 sendAndRecieveCategory();
