@@ -23,7 +23,7 @@ public class Database {
         String line;
         while ((line = getQuestionsFromFile.readLine()) != null) {
             Question qst = new Question();
-            qst.setCategory(line.substring(0, line.indexOf(':')+1));
+            qst.setCategory(line.substring(0, line.indexOf(':')));
             qst.setQuestion(line.substring(line.indexOf(':')+2, line.indexOf('?')+1));
             temp = line.substring(line.indexOf('*')+1);
             cases = temp.split("\\*");
@@ -50,26 +50,25 @@ public class Database {
 
         for(Question qst : questions)
             switch (qst.getCategory()){
-                case "History:":
+                case "History":
                     listByCategory.get(0).add(qst);
                     break;
-                case "Movies:":
+                case "Movies":
                     listByCategory.get(1).add(qst);
                     break;
-                case "Sport:":
+                case "Sport":
                     listByCategory.get(2).add(qst);
                     break;
-                case "Geography:":
+                case "Geography":
                     listByCategory.get(3).add(qst);
                     break;
-                case "Music:":
+                case "Music":
                     listByCategory.get(4).add(qst);
                     break;
-                case "Computers:":
+                case "Computers":
                     listByCategory.get(5).add(qst);
                     break;
             }
-
         return listByCategory;
     }
 

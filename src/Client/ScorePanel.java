@@ -3,19 +3,18 @@ package Client;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Properties;
 
 public class ScorePanel extends JPanel {
-    int amountOfRows = 4;
+    int amountOfRows;
     JPanel upperPanel;
     JPanel lowerPanel;
-    Row row1,row2,row3,row4;
     Row currentRow;
     Row[] rows;
 
     int currentRowID = 0;
     int score1;
     int score2;
-    //TEst
 
     JButton button;
 

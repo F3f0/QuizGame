@@ -3,15 +3,17 @@ package Server;
 
 import Questions.Category;
 import Questions.Question;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 public class Game extends Thread {
+    public int amountOfQuestions;
     public int roundNr = 1;
     public int questionNr = 0;
-    public int maxQuestion = 3;
     public boolean p1Answered = true;
     public boolean p2Answered = true;
     Player currentPlayer;
@@ -71,12 +73,12 @@ public class Game extends Thread {
             }
             questionNr ++;
             System.out.println(questionNr);
-            if (currentPlayer == playerOne && questionNr == maxQuestion){
+            if (currentPlayer == playerOne && questionNr == amountOfQuestions){
                 p1Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP1 = checkScore(currentPlayer.results);
             }
-            else if (currentPlayer == playerTwo && questionNr == maxQuestion) {
+            else if (currentPlayer == playerTwo && questionNr == amountOfQuestions) {
                 p2Answered = true;
                 currentPlayer.sendMessageToPlayer(currentPlayer.results);
                 pointsP2 = checkScore(currentPlayer.results);
@@ -144,7 +146,6 @@ public class Game extends Thread {
 
     public static void main(String[] args) throws IOException {
         Game game = new Game();
-        System.out.println(game.questions.get(0).get(0).toString());
 
     }
 }
