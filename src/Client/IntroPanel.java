@@ -14,7 +14,7 @@ public class IntroPanel extends JPanel {
 
     public IntroPanel(ActionListener a){
 
-            pictureIcon = new ImageIcon(Objects.requireNonNull(super.getClass().getResource("picture.jpg")));
+            pictureIcon = new ImageIcon(Objects.requireNonNull(super.getClass().getResource("src/picture.jpg")));
             myLabel = new JLabel(pictureIcon);
             myLabel.setSize(550, 370);
 

@@ -3,15 +3,17 @@ package Server;
 
 import Questions.Category;
 import Questions.Question;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 public class Game extends Thread {
+    public int amountOfQuestions;
     public int roundNr = 1;
     public int questionNr = 0;
-    public int maxQuestion = 3;
     public boolean p1Answered = true;
     public boolean p2Answered = true;
     Player currentPlayer;

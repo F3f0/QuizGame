@@ -2,11 +2,11 @@ package Client;
 
 import Questions.Category;
 import Questions.Question;
-
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.Properties;
+
 
 public class Receiver extends Thread {
     Thread thread;
@@ -27,11 +27,18 @@ public class Receiver extends Thread {
         thread.start();
     }
 
+    public Receiver() {}
+
     public void run(){
         while(true) {
 
             try {
                 while (((obj = in.readObject())!=null)) {
+                    if(obj instanceof Properties) {
+                        client.gui.scorePanel.amountOfRows = Integer.parseInt(((Properties) obj).getProperty("amountOfRows"));
+                        for(Row row : client.gui.scorePanel.rows)
+                            row.amountOfQuestions = Integer.parseInt(((Properties) obj).getProperty("amountOfQuestions"));
+                    }
                     if(obj instanceof Category) {
                         client.setCategoryQuestion((Category) obj);
                         client.gui.setContentPane(client.gui.gamePanel);
@@ -48,13 +55,15 @@ public class Receiver extends Thread {
                         client.gui.revalidate();
                         client.gui.scorePanel.player1.setText("Player 1");
                         client.gui.scorePanel.player2.setText("Player 2");
-                    } else if(obj instanceof String []){
+                    }
+                    else if(obj instanceof String []){
                         String[] temp1 = (String[]) obj;
                         client.setResults((String[]) obj);
                         for (int i = 0; i < temp1.length ; i++) {
                             System.out.println(" Svar: " + temp1[i]);
                         }
-                    } else if (obj instanceof String){
+                    }
+                    else if (obj instanceof String){
                         String s = (String) obj;
                         if (s.equalsIgnoreCase("Player 1")){
                             client.setPlayerID(1);
@@ -62,7 +71,7 @@ public class Receiver extends Thread {
                             client.setPlayerID(2);
                         } else if(s.equalsIgnoreCase("Next Round")){
                             client.setCurrentRow();
-                            System.out.println("Recieved Next Round");
+                            System.out.println("Received Next Round");
                         } else if(s.contains("Score")) {
                             client.setScore(s);
                         } else if(s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
@@ -87,4 +96,9 @@ public class Receiver extends Thread {
             }
         }
     }
+
+    public static void main(String[] args) {
+        Receiver rec = new Receiver();
+    }
 }
+
