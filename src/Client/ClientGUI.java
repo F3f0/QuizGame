@@ -20,6 +20,8 @@ public class ClientGUI extends JFrame implements ActionListener{
       this.client = client;
       introPanel = new IntroPanel(this);
       this.setContentPane(introPanel);
+      gamePanel = new GamePanel(this);
+      scorePanel = new ScorePanel(this, 4, 4);
 
       pack();
       setVisible(true);
@@ -28,8 +30,10 @@ public class ClientGUI extends JFrame implements ActionListener{
   }
 
   public void setRemainingPanels(int amountOfRows, int amountOfQuestions){
-      gamePanel = new GamePanel(this);
-      scorePanel = new ScorePanel(this, amountOfRows, amountOfQuestions);
+        scorePanel = new ScorePanel(this, amountOfRows, amountOfQuestions);
+        repaint();
+        revalidate();
+        setContentPane(scorePanel);
   }
 
     public void setCorrectAnswer(String correctAnswer) {
@@ -41,6 +45,7 @@ public class ClientGUI extends JFrame implements ActionListener{
 
       if(e.getSource().equals(gamePanel.btn1)){
           client.sendAnswer(gamePanel.btn1.getText());
+          System.out.println("skickat");
           if(gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer)){
               gamePanel.btn1.setBackground(Color.GREEN);
               revalidate();

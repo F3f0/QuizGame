@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public class Server {
 
-
     public Server() throws IOException {
         ServerSocket serverSocket = new ServerSocket(55555);
         Properties p = new Properties();
@@ -16,16 +15,19 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("här");
 
         while(true){
             Game game = new Game();
+            game.amountOfQuestions = Integer.parseInt(p.getProperty("amountOfQuestions"));
+            game.amountOfRows = Integer.parseInt(p.getProperty("amountOfRows"));
             try{
                 Player playerOne = new Player("Player 1", serverSocket.accept(), game);
-                playerOne.sendMessageToPlayer("Player 1");
                 playerOne.sendMessageToPlayer(p);
+                playerOne.sendMessageToPlayer("Player 1");
                 Player playerTwo = new Player("Player 2", serverSocket.accept(), game);
                 game.setPlayerOne(playerOne);
-                game.amountOfQuestions = Integer.parseInt(p.getProperty("amountOfQuestions"));
+                playerTwo.sendMessageToPlayer(p);
                 game.setPlayerTwo(playerTwo);
                 playerOne.start();
                 playerTwo.start();
@@ -39,6 +41,7 @@ public class Server {
     }
 
 
-    public static void main(String[]args) throws IOException {;
+    public static void main(String[]args) throws IOException {
+        Server server = new Server();
     }
 }

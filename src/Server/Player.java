@@ -13,15 +13,16 @@ public class Player extends Thread{
     BufferedReader in;
     ObjectOutputStream out;
     ServerReceiver receiver;
-    String q1;
-    String q2;
-    String q3;
-    String [] results = {player,q1,q2,q3};
+    int amountOfQuestions;
+
+    String [] results;
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;
         this.socket = socket;
         this.game = game;
+        amountOfQuestions = game.amountOfQuestions;
+        results = new String[amountOfQuestions + 1];
         receiver = new ServerReceiver(socket);
 
         try{

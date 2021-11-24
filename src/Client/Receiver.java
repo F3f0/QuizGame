@@ -35,9 +35,11 @@ public class Receiver extends Thread {
             try {
                 while (((obj = in.readObject())!=null)) {
                     if(obj instanceof Properties) {
-                        client.gui.scorePanel.amountOfRows = Integer.parseInt(((Properties) obj).getProperty("amountOfRows"));
-                        for(Row row : client.gui.scorePanel.rows)
-                            row.amountOfQuestions = Integer.parseInt(((Properties) obj).getProperty("amountOfQuestions"));
+                        client.gui.setRemainingPanels(Integer.parseInt(((Properties) obj).getProperty("amountOfRows")),
+                                Integer.parseInt(((Properties) obj).getProperty("amountOfQuestions")));
+                        client.setProperties(Integer.parseInt(((Properties) obj).getProperty("amountOfRows")),
+                                Integer.parseInt(((Properties) obj).getProperty("amountOfQuestions")));
+                        System.out.println("KLART");
                     }
                     if(obj instanceof Category) {
                         client.setCategoryQuestion((Category) obj);

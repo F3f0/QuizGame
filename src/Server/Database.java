@@ -75,22 +75,22 @@ public class Database {
     public int getCategoryByNumber(String str) {
         int temp;
         switch (str) {
-            case "History:":
+            case "History":
                 temp = 0;
                 break;
-            case "Movies:":
+            case "Movies":
                 temp = 1;
                 break;
-            case "Sport:":
+            case "Sport":
                 temp = 2;
                 break;
-            case "Geography:":
+            case "Geography":
                 temp = 3;
                 break;
-            case "Music:":
+            case "Music":
                 temp = 4;
                 break;
-            case "Computers:":
+            case "Computers":
                 temp = 5;
                 break;
             default:

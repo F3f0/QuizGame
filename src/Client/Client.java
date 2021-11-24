@@ -24,6 +24,8 @@ public class Client extends Thread {
     List alternatives;
     List categories;
     int playerID;
+    public int amountOfRows;
+    public int amountOfQuestions;
 
     public Client() {
         this.gui = new ClientGUI(this);
@@ -40,7 +42,8 @@ public class Client extends Thread {
     }
 
     public void setProperties(int amountOfRows, int amountOfQuestions){
-        gui.setRemainingPanels(amountOfRows, amountOfQuestions);
+        this.amountOfRows = amountOfRows;
+        this.amountOfQuestions = amountOfQuestions;
     }
 
     public void setResults(String[] s){
@@ -56,9 +59,9 @@ public class Client extends Thread {
             } else {
                 for (int i = 1; i <s.length ; i++) {
                     if(s[i].equalsIgnoreCase("correct")) {
-                        gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(154,205,50));
+                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(154,205,50));
                     } else if (s[i].equalsIgnoreCase("false")){
-                        gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(220,20,60));
+                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(220,20,60));
                     }
                 }
             }
@@ -67,9 +70,9 @@ public class Client extends Thread {
             if (s[0].equals("Player 2"))
             for (int i = 1; i <s.length ; i++) {
                 if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(154,205,50));
+                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(154,205,50));
                 } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i+3].setBackground(new Color(220,20,60));
+                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(220,20,60));
                 }
             } else {
                 for (int i = 1; i < s.length; i++) {
@@ -98,7 +101,7 @@ public class Client extends Thread {
     public void setCurrentQuestion(Question q){
         currentQuestion = q;
         alternatives = q.getShuffledAlternatives();
-        gui.scorePanel.currentRow.labels[3].setText(currentQuestion.getCategory());
+        gui.scorePanel.currentRow.labels[amountOfQuestions].setText(currentQuestion.getCategory());
         gui.gamePanel.question.setText("<html><center>" + currentQuestion.getQuestion() + "</center></html>");
         gui.gamePanel.btn1.setText((String) alternatives.get(0));
         gui.gamePanel.btn2.setText((String) alternatives.get(1));
@@ -154,10 +157,6 @@ public class Client extends Thread {
 
     @Override
     public void run() {
-        System.out.println("startar..");
-        gui.setContentPane(gui.scorePanel);
-        gui.repaint();
-        gui.revalidate();
         try{
             socket = new Socket("localhost", 55555);
             receiver = new Receiver(socket, this);
@@ -166,6 +165,10 @@ public class Client extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("startar..");
+        gui.setContentPane(gui.scorePanel);
+        gui.repaint();
+        gui.revalidate();
         while(true) {
 
         }

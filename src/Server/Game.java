@@ -12,6 +12,7 @@ import java.util.Properties;
 
 public class Game extends Thread {
     public int amountOfQuestions;
+    public int amountOfRows;
     public int roundNr = 1;
     public int questionNr = 0;
     public boolean p1Answered = true;
@@ -50,7 +51,8 @@ public class Game extends Thread {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
 
-        while (roundNr<5) {
+        while (roundNr<=amountOfRows) {
+            System.out.println("amount" + amountOfQuestions);
             if (p1Answered && p2Answered && questionNr == 0) {
                 startNewRound();
                 sendAndRecieveCategory();
@@ -61,7 +63,7 @@ public class Game extends Thread {
             getAnswer();
             registerResult();
             questionNr ++;
-            if (questionNr == maxQuestion) {
+            if (questionNr == amountOfQuestions) {
                 updatePlayerPoints();
             }
             if (p1Answered && p2Answered){
@@ -69,7 +71,7 @@ public class Game extends Thread {
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
-                if(roundNr==4){
+                if(roundNr==amountOfRows){
                     if(scoreTotP1>scoreTotP2){
                         playerOne.sendMessageToPlayer("won");
                         playerTwo.sendMessageToPlayer("lost");
@@ -87,7 +89,7 @@ public class Game extends Thread {
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
                 roundNr ++;
-            } else if (questionNr==3) {
+            } else if (questionNr==amountOfQuestions) {
                 changePlayer();
                 questionNr = 0;
             }
@@ -143,6 +145,7 @@ public class Game extends Thread {
 
     public void sendQuestion(){
         currentPlayer.sendMessageToPlayer(questions.get(database.getCategoryByNumber(category)).get(questionNr));
+        System.out.println("sent q");
     }
 
     public void getAnswer(){

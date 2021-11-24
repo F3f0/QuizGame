@@ -50,7 +50,7 @@ public class ScorePanel extends JPanel {
         rows = new Row[amountOfRows];
 
         for(int i = 0; i < rows.length; i++){
-            rows[i] = new Row();
+            rows[i] = new Row(amountOfQuestions);
             lowerPanel.add(rows[i]);
         }
         button.setVisible(false);
