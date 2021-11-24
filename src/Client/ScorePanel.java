@@ -65,6 +65,8 @@ public class ScorePanel extends JPanel {
 
     public void setCurrentRow(){
         currentRowID ++;
-        currentRow = rows[currentRowID];
+        if(currentRowID<rows.length) {
+            currentRow = rows[currentRowID];
+        }
     }
 }

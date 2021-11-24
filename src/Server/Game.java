@@ -51,7 +51,7 @@ public class Game extends Thread {
         currentPlayer = playerOne;
         playerTwo.sendMessageToPlayer("Player 2");
 
-        while (roundNr<=amountOfRows) {
+        while (true) {
             System.out.println("amount" + amountOfQuestions);
             if (p1Answered && p2Answered && questionNr == 0) {
                 startNewRound();
@@ -94,7 +94,6 @@ public class Game extends Thread {
                 questionNr = 0;
             }
         }
-        System.exit(0);
     }
 
     public void changePlayer(){
