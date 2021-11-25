@@ -1,7 +1,5 @@
 package Server;
 
-import Questions.Category;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -10,18 +8,18 @@ public class Player extends Thread{
     Socket socket;
     Game game;
     Thread thread;
-    BufferedReader in;
     ObjectOutputStream out;
     ServerReceiver receiver;
-    String q1;
-    String q2;
-    String q3;
-    String [] results = {q1,q2,q3};
+    int amountOfQuestions;
+
+    private String [] results;
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;
         this.socket = socket;
         this.game = game;
+        amountOfQuestions = game.amountOfQuestions;
+        results = new String[amountOfQuestions + 1];
         receiver = new ServerReceiver(socket);
 
         try{
@@ -40,16 +38,10 @@ public class Player extends Thread{
             e.printStackTrace();
         }
     }
-    public void askWhichCategory(Object o){
-        try {
-            out.writeObject(o);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void setResults(int questionNr, String correctOrFalse){
-        results[questionNr] = correctOrFalse;
+        results[0] = player;
+        results[questionNr + 1] = correctOrFalse;
     }
     public String [] getResults(){
         return results;

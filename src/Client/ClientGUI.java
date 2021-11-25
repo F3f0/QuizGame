@@ -1,11 +1,11 @@
 package Client;
 
-import Client.Client;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class ClientGUI extends JFrame implements ActionListener{
 
@@ -13,13 +13,14 @@ public class ClientGUI extends JFrame implements ActionListener{
     GamePanel gamePanel;
     ScorePanel scorePanel;
     IntroPanel introPanel;
+    String correctAnswer = "";
 
-    public ClientGUI(Client client){
+    public ClientGUI(Client client) throws IOException, FontFormatException {
       this.client = client;
-      gamePanel = new GamePanel(this);
-      scorePanel = new ScorePanel();
       introPanel = new IntroPanel(this);
       this.setContentPane(introPanel);
+      gamePanel = new GamePanel(this);
+      scorePanel = new ScorePanel(this, 4, 4);
 
       pack();
       setVisible(true);
@@ -27,23 +28,69 @@ public class ClientGUI extends JFrame implements ActionListener{
       setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
+  public void setRemainingPanels(int amountOfRows, int amountOfQuestions) throws IOException, FontFormatException {
+        scorePanel = new ScorePanel(this, amountOfRows, amountOfQuestions);
+        repaint();
+        revalidate();
+        setContentPane(scorePanel);
+  }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
       if(e.getSource().equals(gamePanel.btn1)){
-          client.sendAnswer(gamePanel.btn1.getText());
+          if(!gamePanel.btn1.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn1.getText());
+              changeButtonColor(gamePanel.btn1);
+          }
       }
       if(e.getSource().equals(gamePanel.btn2)){
-          client.sendAnswer(gamePanel.btn2.getText());
+          if(!gamePanel.btn2.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn2.getText());
+              changeButtonColor(gamePanel.btn2);
+          }
       }
       if(e.getSource().equals(gamePanel.btn3)){
-          client.sendAnswer(gamePanel.btn3.getText());
+          if(!gamePanel.btn3.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn3.getText());
+              changeButtonColor(gamePanel.btn3);
+          }
       }
       if(e.getSource().equals(gamePanel.btn4)){
-          client.sendAnswer(gamePanel.btn4.getText());
+          if(!gamePanel.btn4.getText().equals("")) {
+              client.sendAnswer(gamePanel.btn4.getText());
+              changeButtonColor(gamePanel.btn4);
+          }
       }
       if(e.getSource().equals(introPanel.button)){
           client.thread.start();
       }
+      if(e.getSource().equals(scorePanel.button)){
+          client.sendAnswer("start");
+          client.gui.scorePanel.button.setVisible(false);
+      }
+    }
+    static Font neonFont() throws IOException, FontFormatException {
+        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(24f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(neonFont);
+        return neonFont;
+    }
+
+    public void changeButtonColor(JButton button){
+        if (button.getText().equalsIgnoreCase(correctAnswer)) {
+            button.setBackground(new Color(88, 214, 141));
+            revalidate();
+            repaint();
+        } else if (!button.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+            button.setBackground(new Color(192, 57, 43));
+            revalidate();
+            repaint();
+            correctAnswer = "";
+        }
     }
 }

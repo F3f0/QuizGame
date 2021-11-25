@@ -8,11 +8,11 @@ import java.util.List;
 public class Question implements Serializable {
     private String category;
     private String question;
-    private String case1;
+    private String correctAnswer;
     private String case2;
     private String case3;
     private String case4;
-    private String correctAnswer;
+
 
     public Question(){};
 
@@ -38,14 +38,6 @@ public class Question implements Serializable {
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public String getCase1() {
-        return case1;
-    }
-
-    public void setCase1(String case1) {
-        this.case1 = case1;
     }
 
     public String getCase2() {
@@ -74,7 +66,7 @@ public class Question implements Serializable {
 
     public List<String> getShuffledAlternatives(){
         List<String>  alternatives= new ArrayList<>();
-        alternatives.add(this.getCase1());
+        alternatives.add(this.getCorrectAnswer());
         alternatives.add(this.getCase2());
         alternatives.add(this.getCase3());
         alternatives.add(this.getCase4());

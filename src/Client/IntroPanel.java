@@ -11,7 +11,6 @@ public class IntroPanel extends JPanel {
     private JLabel myLabel;
     private JPanel homePanel;
 
-
     public IntroPanel(ActionListener a){
 
             pictureIcon = new ImageIcon(Objects.requireNonNull(super.getClass().getResource("picture.jpg")));
