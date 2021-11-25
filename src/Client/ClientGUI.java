@@ -76,7 +76,7 @@ public class ClientGUI extends JFrame implements ActionListener{
       }
     }
     static Font neonFont() throws IOException, FontFormatException {
-        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(24f);
+        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(18f);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(neonFont);
         return neonFont;
