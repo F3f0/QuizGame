@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import static Client.ClientGUI.neonFont;
+import static Client.ClientGUI.*;
 
 public class GamePanel extends JPanel {
     JButton btn1;
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel {
         question = new JLabel("Fråga");
         question.setBackground(new Color(40, 55, 71));
         question.setForeground(Color.WHITE);
-        question.setFont(neonFont());
+        question.setFont(lemonFont());
         question.setOpaque(true);
         question.setHorizontalAlignment(SwingConstants.CENTER);
 

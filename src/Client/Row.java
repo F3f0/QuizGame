@@ -5,6 +5,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.IOException;
 
+import static Client.ClientGUI.lemonFont;
 import static Client.ClientGUI.neonFont;
 
 public class Row extends JPanel {
@@ -25,7 +26,7 @@ public class Row extends JPanel {
             labels[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             labels[i].setHorizontalAlignment(SwingConstants.CENTER);
             labels[i].setBackground(new Color(40, 55, 71));
-            labels[i].setFont(neonFont());
+            labels[i].setFont(lemonFont());
             labels[i].setForeground(Color.white );
             labels[i].setBorder(line);
             if(i==amountOfQuestions){

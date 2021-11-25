@@ -81,6 +81,12 @@ public class ClientGUI extends JFrame implements ActionListener{
         ge.registerFont(neonFont);
         return neonFont;
     }
+    static Font lemonFont() throws IOException, FontFormatException {
+        Font lemonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/LEMONMILK-Medium.otf")).deriveFont(14f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(lemonFont);
+        return lemonFont;
+    }
 
     public void changeButtonColor(JButton button){
         if (button.getText().equalsIgnoreCase(correctAnswer)) {
