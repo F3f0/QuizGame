@@ -95,7 +95,7 @@ public class Receiver extends Thread {
                             client.showStartButton();
                         } else if (s.equalsIgnoreCase("Correct!") || s.equalsIgnoreCase("Wrong answer!")) {
                             client.gui.gamePanel.question.setText(s);
-                            Thread.sleep(1500);
+                            Thread.sleep(1000);
                             client.resetButtonColor();
                             client.gui.setContentPane(client.gui.scorePanel);
                             client.gui.repaint();

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import static Client.ClientGUI.neonFont;
+import static Client.ClientGUI.*;
 
 public class GamePanel extends JPanel {
     JButton btn1;
@@ -29,7 +29,6 @@ public class GamePanel extends JPanel {
         btn1.setBackground(new Color(59, 89, 182));
         btn1.setForeground(Color.WHITE);
         btn1.setFocusPainted(false);
-        //btn1.setFont(new Font("Tahoma", Font.BOLD, 12));
         btn1.setFont(neonFont());
 
         btn2 = new JButton("2");
@@ -37,7 +36,6 @@ public class GamePanel extends JPanel {
         btn2.setBackground(new Color(59, 89, 182));
         btn2.setForeground(Color.WHITE);
         btn2.setFocusPainted(false);
-        //btn2.setFont(new Font("Tahoma", Font.BOLD, 12));
         btn2.setFont(neonFont());
 
         btn3 = new JButton("3");
@@ -45,7 +43,6 @@ public class GamePanel extends JPanel {
         btn3.setBackground(new Color(59, 89, 182));
         btn3.setForeground(Color.WHITE);
         btn3.setFocusPainted(false);
-        //btn3.setFont(new Font("Tahoma", Font.BOLD, 12));
         btn3.setFont(neonFont());
 
         btn4 = new JButton("4");
@@ -53,14 +50,13 @@ public class GamePanel extends JPanel {
         btn4.setBackground(new Color(59, 89, 182));
         btn4.setForeground(Color.WHITE);
         btn4.setFocusPainted(false);
-        //btn4.setFont(new Font("Tahoma", Font.BOLD, 12));
         btn4.setFont(neonFont());
 
 
         question = new JLabel("Fråga");
         question.setBackground(new Color(40, 55, 71));
         question.setForeground(Color.WHITE);
-        question.setFont(neonFont());
+        question.setFont(lemonFont());
         question.setOpaque(true);
         question.setHorizontalAlignment(SwingConstants.CENTER);
 

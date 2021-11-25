@@ -15,7 +15,7 @@ public class ClientGUI extends JFrame implements ActionListener{
     IntroPanel introPanel;
     String correctAnswer = "";
 
-    public ClientGUI(Client client) throws IOException, FontFormatException {
+    public ClientGUI (Client client) throws IOException, FontFormatException {
       setTitle("Quiz Game");
       this.client = client;
       introPanel = new IntroPanel(this);
@@ -76,10 +76,16 @@ public class ClientGUI extends JFrame implements ActionListener{
       }
     }
     static Font neonFont() throws IOException, FontFormatException {
-        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(24f);
+        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(18f);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(neonFont);
         return neonFont;
+    }
+    static Font lemonFont() throws IOException, FontFormatException {
+        Font lemonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/LEMONMILK-Medium.otf")).deriveFont(14f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(lemonFont);
+        return lemonFont;
     }
 
     public void changeButtonColor(JButton button){

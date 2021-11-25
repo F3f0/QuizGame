@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import static Client.ClientGUI.lemonFont;
 import static Client.ClientGUI.neonFont;
 
 public class ScorePanel extends JPanel {
@@ -28,13 +30,17 @@ public class ScorePanel extends JPanel {
         player1 = new JLabel("Player1");
         player1.setForeground(Color.WHITE);
         player1.setHorizontalAlignment(SwingConstants.CENTER);
+        player1.setFont(lemonFont());
         player2 = new JLabel("Player2");
         player2.setForeground(Color.WHITE);
         player2.setHorizontalAlignment(SwingConstants.CENTER);
+        player2.setFont(lemonFont());
+
 
         score = new JLabel("0 - 0");
         score.setForeground(Color.white);
         score.setHorizontalAlignment(SwingConstants.CENTER);
+        score.setFont(neonFont());
         upperPanel.add(player1);
         upperPanel.add(score);
         upperPanel.add(player2);
@@ -43,7 +49,6 @@ public class ScorePanel extends JPanel {
         lowerPanel.setBackground(new Color(40, 55, 71));
         lowerPanel.setLayout(new GridLayout(amountOfRows + 1,1));
         button = new JButton("Start new round");
-        //button.setFont(new Font("Serif",Font.BOLD,20));
         button.setFont(neonFont());
         button.setBackground(new Color(236, 112, 99));
         button.setForeground(Color.WHITE);
