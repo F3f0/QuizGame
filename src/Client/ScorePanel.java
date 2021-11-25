@@ -40,7 +40,7 @@ public class ScorePanel extends JPanel {
         lowerPanel = new JPanel();
         //lowerPanel.setPreferredSize(new Dimension(500,500));
         lowerPanel.setBackground(new Color(40, 55, 71));
-        lowerPanel.setLayout(new GridLayout(6, 1));
+        lowerPanel.setLayout(new GridLayout(6,1));
         button = new JButton("Start new round");
         //button.setFont(new Font("Serif",Font.BOLD,20));
         button.setFont(neonFont());

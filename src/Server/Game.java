@@ -1,6 +1,5 @@
 package Server;
 
-
 import Questions.Question;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,6 +66,8 @@ public class Game extends Thread {
                 setScore(pointsP1,pointsP2);
                 playerOne.sendMessageToPlayer(score);
                 playerTwo.sendMessageToPlayer(score);
+                playerOne.sendMessageToPlayer(playerTwo.results);
+                playerTwo.sendMessageToPlayer(playerOne.results);
                 if(roundNr==amountOfRows){
                     if(scoreTotP1>scoreTotP2){
                         playerOne.sendMessageToPlayer("won");
@@ -80,8 +81,6 @@ public class Game extends Thread {
                     }
                 }
                 questionNr = 0;
-                playerOne.sendMessageToPlayer(playerTwo.results);
-                playerTwo.sendMessageToPlayer(playerOne.results);
                 playerOne.sendMessageToPlayer("Next Round");
                 playerTwo.sendMessageToPlayer("Next Round");
                 roundNr ++;
