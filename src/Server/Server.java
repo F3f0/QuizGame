@@ -1,5 +1,4 @@
 package Server;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -15,12 +14,9 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("här");
 
         while(true){
-            Game game = new Game();
-            game.amountOfQuestions = Integer.parseInt(p.getProperty("amountOfQuestions"));
-            game.amountOfRows = Integer.parseInt(p.getProperty("amountOfRows"));
+            Game game = new Game(p);
             try{
                 Player playerOne = new Player("Player 1", serverSocket.accept(), game);
                 playerOne.sendMessageToPlayer(p);
@@ -35,8 +31,6 @@ public class Server {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            // lägga till finally?
-
         }
     }
 

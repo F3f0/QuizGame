@@ -8,12 +8,11 @@ public class Player extends Thread{
     Socket socket;
     Game game;
     Thread thread;
-    BufferedReader in;
     ObjectOutputStream out;
     ServerReceiver receiver;
     int amountOfQuestions;
 
-    String [] results;
+    private String [] results;
 
     public Player(String player, Socket socket, Game game) {
         this.player = player;

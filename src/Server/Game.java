@@ -4,6 +4,7 @@ import Questions.Question;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Game extends Thread {
     public int amountOfQuestions;
@@ -25,10 +26,12 @@ public class Game extends Thread {
     ArrayList<ArrayList<Question>> questions;
     String temp = "";
     List<String> categories;
-
     Thread thread = new Thread(this);
-    public Game() throws IOException {
+
+    public Game(Properties p) throws IOException {
         database= new Database();
+        amountOfQuestions = Integer.parseInt(p.getProperty("amountOfQuestions"));
+        amountOfRows = Integer.parseInt(p.getProperty("amountOfRows"));
         questions = database.getQuestionsByCategory();
         categories = database.getCategoryList();
     }
@@ -47,10 +50,11 @@ public class Game extends Thread {
         playerTwo.sendMessageToPlayer("Player 2");
 
         while (true) {
-            if (p1Answered && p2Answered && questionNr == 0) {
-                removeCategory();
+            if (p1Answered && p2Answered) {
+                removeLastCategory();
                 startNewRound();
-                sendAndRecieveCategory();
+                sendCategories();
+                recieveCategoryChoice();
                 p1Answered = false;
                 p2Answered = false;
             }
@@ -62,29 +66,14 @@ public class Game extends Thread {
                 updatePlayerPoints();
             }
             if (p1Answered && p2Answered){
-                questionNr = 0;
-                setScore(pointsP1,pointsP2);
-                playerOne.sendMessageToPlayer(score);
-                playerTwo.sendMessageToPlayer(score);
-                playerOne.sendMessageToPlayer(playerTwo.results);
-                playerTwo.sendMessageToPlayer(playerOne.results);
-                if(roundNr==amountOfRows){
-                    if(scoreTotP1>scoreTotP2){
-                        playerOne.sendMessageToPlayer("won");
-                        playerTwo.sendMessageToPlayer("lost");
-                    } else if(scoreTotP1<scoreTotP2){
-                        playerTwo.sendMessageToPlayer("won");
-                        playerOne.sendMessageToPlayer("lost");
-                    } else{
-                        playerOne.sendMessageToPlayer("tied");
-                        playerTwo.sendMessageToPlayer("tied");
-                    }
+                setScore(pointsP1, pointsP2);
+                sendResultsToPlayers();
+                if (roundNr == amountOfRows){
+                   sendMatchResultToPlayers();
                 }
                 questionNr = 0;
-                playerOne.sendMessageToPlayer("Next Round");
-                playerTwo.sendMessageToPlayer("Next Round");
-                roundNr ++;
-            } else if (questionNr==amountOfQuestions) {
+                prepareForNextRound();
+            } else if (questionNr == amountOfQuestions) {
                 changePlayer();
                 questionNr = 0;
             }
@@ -122,17 +111,16 @@ public class Game extends Thread {
         score = "Score" + scoreTotP1 + " - " + scoreTotP2;
     }
 
-    public static void main(String[] args) throws IOException {
-        Game game = new Game();
-    }
-
     public void startNewRound(){
         currentPlayer.sendMessageToPlayer("start?");
         temp = currentPlayer.receiver.getAnswer();
     }
 
-    public void sendAndRecieveCategory(){
+    public void sendCategories(){
         currentPlayer.sendMessageToPlayer(categories);
+    }
+
+    public void recieveCategoryChoice(){
         category = currentPlayer.receiver.getAnswer();
     }
 
@@ -155,7 +143,7 @@ public class Game extends Thread {
         }
     }
 
-    public void removeCategory(){
+    public void removeLastCategory(){
         for (int i = 0; i <categories.size() ; i ++) {
             if(categories.get(i).equals(category)){
                 categories.remove(categories.get(i));
@@ -166,12 +154,38 @@ public class Game extends Thread {
     public void updatePlayerPoints(){
             if(currentPlayer == playerOne) {
                 p1Answered = true;
-                currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                pointsP1 = checkScore(currentPlayer.results);
+                currentPlayer.sendMessageToPlayer(currentPlayer.getResults());
+                pointsP1 = checkScore(currentPlayer.getResults());
             } else if(currentPlayer == playerTwo){
                 p2Answered = true;
-                currentPlayer.sendMessageToPlayer(currentPlayer.results);
-                pointsP2 = checkScore(currentPlayer.results);
+                currentPlayer.sendMessageToPlayer(currentPlayer.getResults());
+                pointsP2 = checkScore(currentPlayer.getResults());
             }
+    }
+
+    public void sendResultsToPlayers(){
+        playerOne.sendMessageToPlayer(score);
+        playerTwo.sendMessageToPlayer(score);
+        playerOne.sendMessageToPlayer(playerTwo.getResults());
+        playerTwo.sendMessageToPlayer(playerOne.getResults());
+    }
+
+    public void sendMatchResultToPlayers(){
+        if(scoreTotP1>scoreTotP2){
+            playerOne.sendMessageToPlayer("won");
+            playerTwo.sendMessageToPlayer("lost");
+        } else if(scoreTotP1<scoreTotP2){
+            playerTwo.sendMessageToPlayer("won");
+            playerOne.sendMessageToPlayer("lost");
+        } else{
+            playerOne.sendMessageToPlayer("tied");
+            playerTwo.sendMessageToPlayer("tied");
+        }
+    }
+
+    public void prepareForNextRound(){
+        playerOne.sendMessageToPlayer("Next Round");
+        playerTwo.sendMessageToPlayer("Next Round");
+        roundNr ++;
     }
 }

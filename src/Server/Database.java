@@ -11,11 +11,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Database {
-    int categories = 5;
     private final List<Question> questions = new ArrayList<>();
     private String temp;
     private String[] cases;
-    private final ArrayList<ArrayList<Question>> questionsByCategory = new ArrayList<>(categories);
 
 
     Database() throws IOException {
@@ -35,14 +33,11 @@ public class Database {
         }
         getQuestionsFromFile.close();
     }
-    public List<Question> getQuestionsForGame(){
-        return questions;
-    }
 
     public ArrayList<ArrayList<Question>> getQuestionsByCategory (){
-        ArrayList<ArrayList<Question>> listByCategory = questionsByCategory;
+        ArrayList<ArrayList<Question>> listByCategory = new ArrayList<>();
 
-        for(int i=0; i <= categories; i++) {
+        for(int i=0; i <= 5; i++) {
             listByCategory.add(new ArrayList());
         }
         Collections.shuffle(questions);
@@ -81,7 +76,6 @@ public class Database {
         list.add("Computers");
         Collections.shuffle(list);
         return list;
-
     }
 
     public int getCategoryByNumber(String str) {
