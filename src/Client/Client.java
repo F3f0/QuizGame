@@ -24,6 +24,8 @@ public class Client extends Thread {
     int playerID;
     public int amountOfRows;
     public int amountOfQuestions;
+    Color myGreen = new Color(154,205,50);
+    Color myRed = new Color(220,20,60);
 
     public Client() throws IOException, FontFormatException {
         this.gui = new ClientGUI(this);
@@ -36,7 +38,6 @@ public class Client extends Thread {
         } else if(playerID == 2){
             gui.scorePanel.player2.setText("<html><center>" + "You are player 2. Waiting for player 1 to finish round" + "</center></html>");
         }
-        System.out.println("PlayerID = " + playerID);
     }
 
     public void setProperties(int amountOfRows, int amountOfQuestions){
@@ -49,17 +50,17 @@ public class Client extends Thread {
             if (s[0].equals("Player 1")) {
                 for (int i = 1; i < s.length; i++) {
                     if (s[i].equalsIgnoreCase("correct")) {
-                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(154, 205, 50));
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(myGreen);
                     } else if (s[i].equalsIgnoreCase("false")) {
-                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(220, 20, 60));
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(myRed);
                     }
                 }
             } else {
                 for (int i = 1; i <s.length ; i++) {
                     if(s[i].equalsIgnoreCase("correct")) {
-                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(154,205,50));
+                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(myGreen);
                     } else if (s[i].equalsIgnoreCase("false")){
-                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(220,20,60));
+                        gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(myRed);
                     }
                 }
             }
@@ -68,23 +69,22 @@ public class Client extends Thread {
             if (s[0].equals("Player 2"))
             for (int i = 1; i <s.length ; i++) {
                 if(s[i].equalsIgnoreCase("correct")) {
-                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(154,205,50));
+                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(myGreen);
                 } else if (s[i].equalsIgnoreCase("false")){
-                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(new Color(220,20,60));
+                    gui.scorePanel.currentRow.labels[i+amountOfQuestions].setBackground(myRed);
                 }
             } else {
                 for (int i = 1; i < s.length; i++) {
                     if (s[i].equalsIgnoreCase("correct")) {
-                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(154, 205, 50));
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(myGreen);
                     } else if (s[i].equalsIgnoreCase("false")) {
-                        gui.scorePanel.currentRow.labels[i-1].setBackground(new Color(220, 20, 60));
+                        gui.scorePanel.currentRow.labels[i-1].setBackground(myRed);
                     }
                 }
             }
         }
         gui.scorePanel.repaint();
         gui.scorePanel.revalidate();
-        System.out.println("Updated results");
     }
 
     public void setScore(String s){
@@ -93,7 +93,6 @@ public class Client extends Thread {
 
     public void setCurrentRow(){
         gui.scorePanel.setCurrentRow();
-        System.out.println(gui.scorePanel.currentRowID);
     }
 
     public void setCurrentQuestion(Question q){
@@ -107,8 +106,6 @@ public class Client extends Thread {
         gui.gamePanel.btn4.setText((String) alternatives.get(3));
         gui.setCorrectAnswer(q.getCorrectAnswer());
 
-
-        //Behövs dessa?
         gui.repaint();
         gui.revalidate();
     }
@@ -117,11 +114,12 @@ public class Client extends Thread {
         categories = c;
         gui.setCorrectAnswer("category");
         gui.gamePanel.question.setText("<html><center>" + "Choose your category" + "</center></html>");
+
         if(categories.size()>0) {
             gui.gamePanel.btn1.setText((String) categories.get(0));
         } else{
             gui.gamePanel.btn1.setText("");
-        } if (categories.size()>1) {
+        }if (categories.size()>1) {
             gui.gamePanel.btn2.setText((String) categories.get(1));
         } else {
             gui.gamePanel.btn2.setText("");
@@ -136,6 +134,7 @@ public class Client extends Thread {
         } else{
             gui.gamePanel.btn4.setText("");
         }
+
         gui.repaint();
         gui.revalidate();
     }
@@ -152,8 +151,8 @@ public class Client extends Thread {
     }
 
     public void setEndResult(String s){
-        int knappNr = (JOptionPane.showConfirmDialog(null, "You " + s + ". New game?"));
-        if (knappNr == JOptionPane.YES_OPTION) {
+        int btnNr = (JOptionPane.showConfirmDialog(null, "You " + s + "! New game?"));
+        if (btnNr == JOptionPane.YES_OPTION) {
             try {
                 socket = new Socket("localhost", 55555);
                 receiver = new Receiver(socket, this);
@@ -180,7 +179,6 @@ public class Client extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("startar..");
         gui.setContentPane(gui.scorePanel);
         gui.repaint();
         gui.revalidate();

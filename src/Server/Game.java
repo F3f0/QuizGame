@@ -51,7 +51,7 @@ public class Game extends Thread {
 
         while (true) {
             if (p1Answered && p2Answered) {
-                removeLastCategory();
+                removePreviousCategory();
                 startNewRound();
                 sendCategories();
                 recieveCategoryChoice();
@@ -81,6 +81,7 @@ public class Game extends Thread {
     }
 
     public void changePlayer(){
+        currentPlayer.sendMessageToPlayer("wait");
         if (currentPlayer == playerOne){
             currentPlayer = playerTwo;
         } else {
@@ -135,15 +136,15 @@ public class Game extends Thread {
 
     public void registerResult(){
         if (temp.equalsIgnoreCase(questions.get(database.getCategoryByNumber(category)).get(questionNr).getCorrectAnswer())) {
-            currentPlayer.sendMessageToPlayer("Rätt svar!");
+            currentPlayer.sendMessageToPlayer("Correct!");
             currentPlayer.setResults(questionNr, "correct");
         } else {
-            currentPlayer.sendMessageToPlayer("Fel svar!");
+            currentPlayer.sendMessageToPlayer("Wrong answer!");
             currentPlayer.setResults(questionNr, "false");
         }
     }
 
-    public void removeLastCategory(){
+    public void removePreviousCategory(){
         for (int i = 0; i <categories.size() ; i ++) {
             if(categories.get(i).equals(category)){
                 categories.remove(categories.get(i));

@@ -15,7 +15,6 @@ public class ClientGUI extends JFrame implements ActionListener{
     IntroPanel introPanel;
     String correctAnswer = "";
 
-
     public ClientGUI(Client client) throws IOException, FontFormatException {
       this.client = client;
       introPanel = new IntroPanel(this);
@@ -46,63 +45,25 @@ public class ClientGUI extends JFrame implements ActionListener{
       if(e.getSource().equals(gamePanel.btn1)){
           if(!gamePanel.btn1.getText().equals("")) {
               client.sendAnswer(gamePanel.btn1.getText());
-              System.out.println("skickat");
-              if (gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer)) {
-                  gamePanel.btn1.setBackground(new Color(88, 214, 141));
-                  revalidate();
-                  repaint();
-              } else if (!gamePanel.btn1.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
-                  gamePanel.btn1.setBackground(new Color(192, 57, 43));
-                  revalidate();
-                  repaint();
-                  correctAnswer = "";
-              }
+              changeButtonColor(gamePanel.btn1);
           }
       }
       if(e.getSource().equals(gamePanel.btn2)){
           if(!gamePanel.btn2.getText().equals("")) {
               client.sendAnswer(gamePanel.btn2.getText());
-              if (gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer)) {
-                  gamePanel.btn2.setBackground(new Color(88, 214, 141));
-                  revalidate();
-                  repaint();
-              } else if (correctAnswer.equalsIgnoreCase("")) {
-              } else if (!gamePanel.btn2.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
-                  gamePanel.btn2.setBackground(new Color(192, 57, 43));
-                  revalidate();
-                  repaint();
-                  correctAnswer = "";
-              }
+              changeButtonColor(gamePanel.btn2);
           }
       }
       if(e.getSource().equals(gamePanel.btn3)){
           if(!gamePanel.btn3.getText().equals("")) {
               client.sendAnswer(gamePanel.btn3.getText());
-              if (gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer)) {
-                  gamePanel.btn3.setBackground(new Color(88, 214, 141));
-                  revalidate();
-                  repaint();
-              } else if (!gamePanel.btn3.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
-                  gamePanel.btn3.setBackground(new Color(192, 57, 43));
-                  revalidate();
-                  repaint();
-                  correctAnswer = "";
-              }
+              changeButtonColor(gamePanel.btn3);
           }
       }
       if(e.getSource().equals(gamePanel.btn4)){
           if(!gamePanel.btn4.getText().equals("")) {
               client.sendAnswer(gamePanel.btn4.getText());
-              if (gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer)) {
-                  gamePanel.btn4.setBackground(new Color(88, 214, 141));
-                  revalidate();
-                  repaint();
-              } else if (!gamePanel.btn4.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
-                  gamePanel.btn4.setBackground(new Color(192, 57, 43));
-                  revalidate();
-                  repaint();
-                  correctAnswer = "";
-              }
+              changeButtonColor(gamePanel.btn4);
           }
       }
       if(e.getSource().equals(introPanel.button)){
@@ -118,5 +79,18 @@ public class ClientGUI extends JFrame implements ActionListener{
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(neonFont);
         return neonFont;
+    }
+
+    public void changeButtonColor(JButton button){
+        if (button.getText().equalsIgnoreCase(correctAnswer)) {
+            button.setBackground(new Color(88, 214, 141));
+            revalidate();
+            repaint();
+        } else if (!button.getText().equalsIgnoreCase(correctAnswer) && !correctAnswer.equals("category")) {
+            button.setBackground(new Color(192, 57, 43));
+            revalidate();
+            repaint();
+            correctAnswer = "";
+        }
     }
 }

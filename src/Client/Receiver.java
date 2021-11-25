@@ -9,8 +9,6 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Properties;
 
-
-
 public class Receiver extends Thread {
     Thread thread;
     ObjectInputStream in;
@@ -69,18 +67,33 @@ public class Receiver extends Thread {
                             client.setPlayerID(1);
                         } else if (s.equalsIgnoreCase("Player 2")){
                             client.setPlayerID(2);
-                        } else if(s.equalsIgnoreCase("Next Round")){
+                        } else if (s.equalsIgnoreCase("Next Round")){
                             client.setCurrentRow();
-                        } else if(s.contains("Score")) {
+
+                            if (client.playerID==1){
+                                client.gui.scorePanel.player1.setText("<html><center>Player 1 <br> (Opponents turn)</center></html>");
+                            } else {
+                                client.gui.scorePanel.player2.setText("<html><center>Player 2 <br>(Opponents turn)</center></html>");
+                            }
+
+                        } else if(s.equalsIgnoreCase("wait")){
+
+                            if (client.playerID==1){
+                                client.gui.scorePanel.player1.setText("<html><center>Player 1 <br> (Opponents turn)</center></html>");
+                            } else {
+                                client.gui.scorePanel.player2.setText("<html><center>Player 2 <br>(Opponents turn)</center></html>");
+                            }
+
+                        } else if (s.contains("Score")) {
                             client.setScore(s);
-                        } else if(s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
+                        } else if (s.equalsIgnoreCase("won") || s.equalsIgnoreCase("lost") ||
                         s.equalsIgnoreCase("tied")) {
                             client.setEndResult(s);
-                        } else if(s.equalsIgnoreCase("start?")){
+                        } else if (s.equalsIgnoreCase("start?")){
                             client.gui.scorePanel.player1.setText("Player 1");
                             client.gui.scorePanel.player2.setText("Player 2");
                             client.showStartButton();
-                        } else if(s.equalsIgnoreCase("Rätt svar!") || s.equalsIgnoreCase("Fel svar!")) {
+                        } else if (s.equalsIgnoreCase("Correct!") || s.equalsIgnoreCase("Wrong answer!")) {
                             client.gui.gamePanel.question.setText(s);
                             Thread.sleep(1500);
                             client.resetButtonColor();
@@ -95,6 +108,5 @@ public class Receiver extends Thread {
             }
         }
     }
-
 }
 

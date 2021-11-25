@@ -24,12 +24,14 @@ public class ScorePanel extends JPanel {
         upperPanel.setPreferredSize(new Dimension(500, 100));
         upperPanel.setBackground(new Color(40, 55, 71));
         upperPanel.setLayout(new GridLayout(1, 2));
+
         player1 = new JLabel("Player1");
         player1.setForeground(Color.WHITE);
         player1.setHorizontalAlignment(SwingConstants.CENTER);
         player2 = new JLabel("Player2");
         player2.setForeground(Color.WHITE);
         player2.setHorizontalAlignment(SwingConstants.CENTER);
+
         score = new JLabel("0 - 0");
         score.setForeground(Color.white);
         score.setHorizontalAlignment(SwingConstants.CENTER);
@@ -37,7 +39,7 @@ public class ScorePanel extends JPanel {
         upperPanel.add(score);
         upperPanel.add(player2);
         lowerPanel = new JPanel();
-        //lowerPanel.setPreferredSize(new Dimension(500,500));
+
         lowerPanel.setBackground(new Color(40, 55, 71));
         lowerPanel.setLayout(new GridLayout(amountOfRows + 1,1));
         button = new JButton("Start new round");
@@ -45,7 +47,6 @@ public class ScorePanel extends JPanel {
         button.setFont(neonFont());
         button.setBackground(new Color(236, 112, 99));
         button.setForeground(Color.WHITE);
-
         button.setFocusPainted(false);
         button.setBorderPainted(false);
 
@@ -59,7 +60,6 @@ public class ScorePanel extends JPanel {
         button.addActionListener(a);
         lowerPanel.add(button);
 
-        //row1.labels[0].setBackground(Color.GREEN);
         add(upperPanel, BorderLayout.NORTH);
         add(lowerPanel, BorderLayout.CENTER);
         currentRow = rows[currentRowID];
