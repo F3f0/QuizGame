@@ -1,11 +1,11 @@
 package Client;
 
-import Client.Client;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class ClientGUI extends JFrame implements ActionListener{
 
@@ -16,7 +16,7 @@ public class ClientGUI extends JFrame implements ActionListener{
     String correctAnswer = "";
 
 
-    public ClientGUI(Client client){
+    public ClientGUI(Client client) throws IOException, FontFormatException {
       this.client = client;
       introPanel = new IntroPanel(this);
       this.setContentPane(introPanel);
@@ -29,7 +29,7 @@ public class ClientGUI extends JFrame implements ActionListener{
       setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
-  public void setRemainingPanels(int amountOfRows, int amountOfQuestions){
+  public void setRemainingPanels(int amountOfRows, int amountOfQuestions) throws IOException, FontFormatException {
         scorePanel = new ScorePanel(this, amountOfRows, amountOfQuestions);
         repaint();
         revalidate();
@@ -112,5 +112,11 @@ public class ClientGUI extends JFrame implements ActionListener{
           client.sendAnswer("start");
           client.gui.scorePanel.button.setVisible(false);
       }
+    }
+    static Font neonFont() throws IOException, FontFormatException {
+        Font neonFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/NEONLEDlight.otf")).deriveFont(24f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(neonFont);
+        return neonFont;
     }
 }

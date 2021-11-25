@@ -1,6 +1,8 @@
 package Client;
 
 import Questions.Question;
+
+import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -92,7 +94,7 @@ public class Receiver extends Thread {
                         }
                     }
                 }
-            } catch (IOException | ClassNotFoundException | InterruptedException e) {
+            } catch (IOException | ClassNotFoundException | InterruptedException | FontFormatException e) {
                 e.printStackTrace();
             }
         }

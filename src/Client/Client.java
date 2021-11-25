@@ -25,7 +25,7 @@ public class Client extends Thread {
     public int amountOfRows;
     public int amountOfQuestions;
 
-    public Client() {
+    public Client() throws IOException, FontFormatException {
         this.gui = new ClientGUI(this);
     }
 
@@ -147,15 +147,6 @@ public class Client extends Thread {
         gui.gamePanel.btn4.setBackground(new Color(59, 89, 182));
     }
 
-    public static void main(String[]args)  {
-        try {
-            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Client client = new Client();
-    }
-
     public void sendAnswer(String s){
         out.println(s);
     }
@@ -193,5 +184,13 @@ public class Client extends Thread {
         gui.setContentPane(gui.scorePanel);
         gui.repaint();
         gui.revalidate();
+    }
+    public static void main(String[]args) throws IOException, FontFormatException {
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Client client = new Client();
     }
 }
