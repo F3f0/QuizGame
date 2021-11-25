@@ -26,7 +26,8 @@ public class Row extends JPanel {
             labels[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             labels[i].setHorizontalAlignment(SwingConstants.CENTER);
             labels[i].setBackground(new Color(40, 55, 71));
-            labels[i].setFont(lemonFont());
+            float size = 10;
+            labels[i].setFont(lemonFont().deriveFont(size));
             labels[i].setForeground(Color.white );
             labels[i].setBorder(line);
             if(i==amountOfQuestions){

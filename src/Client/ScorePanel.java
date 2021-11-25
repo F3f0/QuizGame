@@ -36,6 +36,7 @@ public class ScorePanel extends JPanel {
         player2.setHorizontalAlignment(SwingConstants.CENTER);
         player2.setFont(lemonFont());
 
+
         score = new JLabel("0 - 0");
         score.setForeground(Color.white);
         score.setHorizontalAlignment(SwingConstants.CENTER);

@@ -15,9 +15,9 @@ public class Server {
             e.printStackTrace();
         }
 
-        while(true){
+        while (true) {
             Game game = new Game(p);
-            try{
+            try {
                 Player playerOne = new Player("Player 1", serverSocket.accept(), game);
                 playerOne.sendMessageToPlayer(p);
                 playerOne.sendMessageToPlayer("Player 1");

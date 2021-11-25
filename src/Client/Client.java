@@ -34,9 +34,9 @@ public class Client extends Thread {
     public void setPlayerID(int ID){
         playerID = ID;
         if(playerID == 1){
-            gui.scorePanel.player1.setText("<html><center>" +"You are player 1, waiting for player 2 to connect" + "</center></html>");
+            gui.scorePanel.player1.setText("<html><center>" +" You are player 1 <br> waiting for player 2 to connect" + "</center></html>");
         } else if(playerID == 2){
-            gui.scorePanel.player2.setText("<html><center>" + "You are player 2. Waiting for player 1 to finish round" + "</center></html>");
+            gui.scorePanel.player2.setText("<html><center>" + " You are player 2 <br> Waiting for player 1 to finish round" + "</center></html>");
         }
     }
 
@@ -183,6 +183,7 @@ public class Client extends Thread {
         gui.repaint();
         gui.revalidate();
     }
+
     public static void main(String[]args) throws IOException, FontFormatException {
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );

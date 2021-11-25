@@ -15,7 +15,7 @@ public class ClientGUI extends JFrame implements ActionListener{
     IntroPanel introPanel;
     String correctAnswer = "";
 
-    public ClientGUI(Client client) throws IOException, FontFormatException {
+    public ClientGUI (Client client) throws IOException, FontFormatException {
       setTitle("Quiz Game");
       this.client = client;
       introPanel = new IntroPanel(this);
